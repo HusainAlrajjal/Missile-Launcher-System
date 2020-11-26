@@ -99,7 +99,7 @@ def multiplicativeInverse(a, m):
 
 def test(key, X):
     return (modExp(X, 1, key[1])) == key[0]
-#df
+
 
 def main():
     # n = int(input("Choose the number of Generals (n)>>> "))
