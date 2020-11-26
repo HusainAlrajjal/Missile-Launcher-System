@@ -42,22 +42,30 @@ def gcd(a, b):
 
 
 def ChineseRemainderTheoremSetup(n):
+    # choosing a prime randomly from the dataset 1000prime.
     mk_list = list()
     m = 1
     for i in range(n):
         r = random.randint(0, len(primes) - 1)
         mk_list.append(primes[r])
         m *= mk_list[i]
+
+    # choosing a where a is from  a mod mk
     a_list = list()
     i = 0
+
+    # generate co-prime to mk
     while i < n:
-        r = random.randint(1, mk_list[i] - 1)
+        # problem 1: random number should be >= size(n digits
+        r = random.randint(pow(10, len(str(mk_list[i]))), mk_list[i] - 1)
+        #
         if gcd(r, mk_list[i]) == 1:
             a_list.append(r)
             i += 1
+
+    # end of generating co-primes of mk
     y_list = list()
     Mk_list = list()
-
     for i in mk_list:
         Mk_value = m // i
         Mk_list.append(Mk_value)
@@ -109,6 +117,7 @@ def main():
     key = result[1]
     print(test(key, result[0]))
     print(test([134, 242], result[0]))
+
 
 if __name__ == '__main__':
     main()
