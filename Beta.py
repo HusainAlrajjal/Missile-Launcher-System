@@ -155,7 +155,7 @@ def main():
         if test(i, SecretKey, mlist):
             print(i, "We have break your system :)")
 
-    # print(test([79839, 98041], SecretKey, mlist))
+    print(test([79839, 98041], SecretKey, mlist))
 
 
 if __name__ == '__main__':

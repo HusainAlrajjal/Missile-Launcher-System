@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d60fe408-e30b-4dfd-8a54-8c2500a0e4c9" name="Default Changelist" comment="" />
+    <list default="true" id="d60fe408-e30b-4dfd-8a54-8c2500a0e4c9" name="Default Changelist" comment="beat2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,23 +86,27 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="beat2" />
+    <option name="LAST_COMMIT_MESSAGE" value="beat2" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1515" height="213" key="GridCell.Tab.0.bottom" timestamp="1606427881431">
+    <state width="1515" height="213" key="GridCell.Tab.0.bottom" timestamp="1606428279220">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1515" height="213" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1606427881431" />
-    <state width="1515" height="213" key="GridCell.Tab.0.center" timestamp="1606427881431">
+    <state width="1515" height="213" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1606428279220" />
+    <state width="1515" height="213" key="GridCell.Tab.0.center" timestamp="1606428279220">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1515" height="213" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1606427881431" />
-    <state width="1515" height="213" key="GridCell.Tab.0.left" timestamp="1606427881431">
+    <state width="1515" height="213" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1606428279220" />
+    <state width="1515" height="213" key="GridCell.Tab.0.left" timestamp="1606428279220">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1515" height="213" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1606427881431" />
-    <state width="1515" height="213" key="GridCell.Tab.0.right" timestamp="1606427881431">
+    <state width="1515" height="213" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1606428279220" />
+    <state width="1515" height="213" key="GridCell.Tab.0.right" timestamp="1606428279220">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1515" height="213" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1606427881431" />
+    <state width="1515" height="213" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1606428279220" />
     <state x="586" y="361" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606421774284">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
