@@ -57,27 +57,30 @@ def ChineseRemainderTheoremSetup(n):
     # generate co-prime to mk
     while i < n:
         # problem 1: random number should be >= size(n digits
-        r = random.randint(pow(10, len(str(mk_list[i]))), mk_list[i] - 1)
+        r = random.randint(10 ** (len(str(mk_list[i])) - 1), mk_list[i] - 1)
         #
         if gcd(r, mk_list[i]) == 1:
             a_list.append(r)
             i += 1
-
     # end of generating co-primes of mk
-    y_list = list()
+
+    #
     Mk_list = list()
     for i in mk_list:
         Mk_value = m // i
         Mk_list.append(Mk_value)
 
+    y_list = list()
     for i in range(n):
         y_list.append(multiplicativeInverse(Mk_list[i], mk_list[i]))
 
     X = 0
+    # X is 23 and m = 105
     for i in range(n):
         X += Mk_list[i] * a_list[i] * y_list[i]
     X = X % m
-    result = [X]
+
+    result = [X, mk_list]
     for i in range(n):
         result.append([a_list[i], mk_list[i]])
     return result
@@ -98,25 +101,61 @@ def modExp(b, n, m):
 
 
 def multiplicativeInverse(a, m):
-    a = pow(a, 1, m)
-    for x in range(1, m):
-        if modExp(a * x, 1, m) == 1:
-            return x
-    return 1
+    a = a % m
+    if gcd(a, m) == 1:
+        # problem 2: [check] if a is not co-prime with m then there's no inverse
+        for x in range(1, m):
+            if (a * x) % m == 1:
+                return x
+    else:
+        return "do sultan's magic way"
+    return -1  # -1 indicates that there's no inverse for a mod m
 
 
-def test(key, X):
-    return (modExp(X, 1, key[1])) == key[0]
+def test(key, X, mlist):
+    # this to ensure that the left pair of the key is less than the right pair of the key
+    # we might check for the hacker and kick him out  this is the recording around [ 2: 30: 00 ]
+    # key[0] = key[0] % key[1]
+
+    for i in mlist:
+        if key[1] == i:
+            return (X % key[1]) == key[0]
+
+    return False
+
+
+def getRandom(n):
+    return random.randint(10 ** (n - 1), (10 ** n) - 1)
+
+
+def genAttack(nDigits, sizeOfAttack):
+    attackKeys = []
+    for i in range(sizeOfAttack):
+        r = [getRandom(nDigits), getRandom(nDigits)]
+        attackKeys.append(r)
+    return attackKeys
 
 
 def main():
     # n = int(input("Choose the number of Generals (n)>>> "))
     n = 5
-    result = ChineseRemainderTheoremSetup(n)
-    print(result)
-    key = result[1]
-    print(test(key, result[0]))
-    print(test([134, 242], result[0]))
+    # result = ChineseRemainderTheoremSetup(n)
+    # print(result)
+    result = [2551626037209230983216, [98041, 13691, 42797, 1217, 60601], [79839, 98041], [10112, 13691],
+              [10615, 42797], [1085, 1217], [47146, 60601]]
+    SecretKey = result[0]
+    mlist = result[1]
+
+    for i in result[2:]:
+        print(i, test(i, SecretKey, mlist))
+
+    attackList = genAttack(5, 10000)
+
+    for i in attackList:
+        if test(i, SecretKey, mlist):
+            print(i, "We have break your system :)")
+
+    # print(test([79839, 98041], SecretKey, mlist))
 
 
 if __name__ == '__main__':
