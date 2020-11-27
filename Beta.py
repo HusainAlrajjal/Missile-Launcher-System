@@ -135,6 +135,27 @@ def genAttack(nDigits, sizeOfAttack):
         attackKeys.append(r)
     return attackKeys
 
+# generate pwList from start up to end inclusive
+def pwListGenerator(start, end):
+    if start < end:
+        end += 1
+        pwList = open("keys.txt", "w")
+        for i in range(start, end): #99999
+            for j in range(start, end):
+                r = [i, j]
+                pwList.write(str(i) +" "+ str(j) + "\n")
+        pwList.close()
+
+
+def bruteForce(pwList):
+    #pwListGenerator(10000, 14000)
+    attackKeys = []
+    with open(pwList,'r') as keys: 
+        for line in keys:
+            attackKeys.append([int(line.split()[0]), int(line.split()[1])])
+        keys.close()
+    return attackKeys
+
 
 def main():
     # n = int(input("Choose the number of Generals (n)>>> "))
@@ -148,14 +169,15 @@ def main():
 
     for i in result[2:]:
         print(i, test(i, SecretKey, mlist))
-
-    attackList = genAttack(5, 10000)
-
+    
+    #pwListGenerator(1085, 1300)
+    #attackList = genAttack(5, 10000)
+    attackList = bruteForce('keys.txt')
     for i in attackList:
         if test(i, SecretKey, mlist):
-            print(i, "We have break your system :)")
+            print(i, "We have broke your system :)")
 
-    print(test([79839, 98041], SecretKey, mlist))
+    #print(test([79839, 98041], SecretKey, mlist))
 
 
 if __name__ == '__main__':
