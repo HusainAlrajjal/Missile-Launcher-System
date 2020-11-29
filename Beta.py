@@ -168,8 +168,8 @@ def getCoPrimes(n):
 
 def CRT_Setup(n_equations):
 
-    address = "10000prime.txt"
-    primes = import_primes(address)
+    #address = "10000prime.txt"
+    #primes = import_primes(address)
 
     co_primes = getCoPrimes(8)
     print(co_primes)
