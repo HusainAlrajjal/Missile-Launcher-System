@@ -160,7 +160,7 @@ def getCoPrimes(n):
         '''
     # generated co_primes block
         #  g = generateCoPrime(getRandomCoPrimePair(you might specify the max possible mk value from here))[random.randint(0, 2)]
-        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 99999999999)))[random.randint(0, 2)]
+        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 1000)))[random.randint(0, 2)]
         Generated_co_primes.append(g[0])
         Generated_co_primes.append(g[1])
     # block end ------------------
@@ -169,8 +169,7 @@ def getCoPrimes(n):
 def CRT_Setup(n_equations):
 
     #address = "10000prime.txt"
-    #primes = import_primes(address)
-
+    #primes = import_primes(address)xvv
     co_primes = getCoPrimes(8)
     print(co_primes)
 
