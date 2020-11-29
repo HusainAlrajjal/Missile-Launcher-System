@@ -160,7 +160,7 @@ def getCoPrimes(n):
         '''
     # generated co_primes block
         #  g = generateCoPrime(getRandomCoPrimePair(you might specify the max possible mk value from here))[random.randint(0, 2)]
-        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 1000)))[random.randint(0, 2)]
+        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 200)))[random.randint(0, 2)]
         Generated_co_primes.append(g[0])
         Generated_co_primes.append(g[1])
     # block end ------------------
@@ -168,12 +168,12 @@ def getCoPrimes(n):
 
 def CRT_Setup(n_equations):
 
-    #address = "10000prime.txt"
-    #primes = import_primes(address)xvv
+    address = "10000prime.txt"
+    primes = import_primes(address)
     co_primes = getCoPrimes(8)
     print(co_primes)
 
-    primes = co_primes
+    #primes = co_primes
     # choosing a prime randomly from the dataset 1000prime.
     mk_list = list()
     m = 1
@@ -220,7 +220,7 @@ def CRT_Setup(n_equations):
 
 def main():
 
-    print(CRT_Setup(3))
+    print(CRT_Setup(5))
     # n = int(input("Choose the number of Generals (n)>>> "))
     n = 5
     # result = ChineseRemainderTheoremSetup(n)
