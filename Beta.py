@@ -141,35 +141,40 @@ def generateCoPrime(list):
 def getRandomCoPrimePair(n): # n is the maximum of the random number
     r = []
     while True:
-        r = [random.randint(1, n), random.randint(1, n)]
+        r = [random.randint(2, n), random.randint(2, n)]
         if (gcd(r[0], r[1]) == 1):
             return r
+
+
+
+def getCoPrimes(n):
+    Random_co_primes = []
+    Generated_co_primes = []
+    for i in range(int(n/2)):
+        '''
+    # random co_primes block
+        r = getRandomCoPrimePair(1000)
+        Random_co_primes.append(r[0])
+        Random_co_primes.append(r[1])
+    # block end ------------------
+        '''
+    # generated co_primes block
+        #  g = generateCoPrime(getRandomCoPrimePair(you might specify the max possible mk value from here))[random.randint(0, 2)]
+        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 99999999999)))[random.randint(0, 2)]
+        Generated_co_primes.append(g[0])
+        Generated_co_primes.append(g[1])
+    # block end ------------------
+    return Generated_co_primes
 
 def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
 
-    Random_co_primes = []
-    Generated_co_primes = []
+    co_primes = getCoPrimes(8)
+    print(co_primes)
 
-    for i in range(4):
-    # random co_primes block
-        r = getRandomCoPrimePair(1000)
-        Random_co_primes.append(r[0])
-        Random_co_primes.append(r[1])
-    # block end ------------------
-
-    # generated co_primes block
-        g = generateCoPrime(r)[random.randint(0, 2)]
-        Generated_co_primes.append(g[0])
-        Generated_co_primes.append(g[1])
-    # block end ------------------
-
-    
-    print(Random_co_primes)
-    print(Generated_co_primes)
-
+    primes = co_primes
     # choosing a prime randomly from the dataset 1000prime.
     mk_list = list()
     m = 1
