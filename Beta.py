@@ -17,9 +17,6 @@ def import_primes(address):
     return dataset
 
 
-address = "10000prime.txt"
-primes = import_primes(address)
-
 
 def fermat_primality_test(n, coprime_bases_list):
     pseudoprime_list = list()
@@ -41,49 +38,6 @@ def gcd(a, b):
         return gcd(b, a)
 
 
-def ChineseRemainderTheoremSetup(n):
-    # choosing a prime randomly from the dataset 1000prime.
-    mk_list = list()
-    m = 1
-    for i in range(n):
-        r = random.randint(0, len(primes) - 1)
-        mk_list.append(primes[r])
-        m *= mk_list[i]
-
-    # choosing a where a is from  a mod mk
-    a_list = list()
-    i = 0
-
-    # generate co-prime to mk
-    while i < n:
-        # problem 1: random number should be >= size(n digits
-        r = random.randint(10 ** (len(str(mk_list[i])) - 1), mk_list[i] - 1)
-        #
-        if gcd(r, mk_list[i]) == 1:
-            a_list.append(r)
-            i += 1
-    # end of generating co-primes of mk
-
-    #
-    Mk_list = list()
-    for i in mk_list:
-        Mk_value = m // i
-        Mk_list.append(Mk_value)
-
-    y_list = list()
-    for i in range(n):
-        y_list.append(multiplicativeInverse(Mk_list[i], mk_list[i]))
-
-    X = 0
-    # X is 23 and m = 105
-    for i in range(n):
-        X += Mk_list[i] * a_list[i] * y_list[i]
-    X = X % m
-
-    result = [X, mk_list]
-    for i in range(n):
-        result.append([a_list[i], mk_list[i]])
-    return result
 
 
 def modExp(b, n, m):
@@ -156,8 +110,113 @@ def bruteForce(pwList):
         keys.close()
     return attackKeys
 
+# m > n
+def generateCoPrime(list):
+    '''
+        All pairs of positive coprime numbers ( m , n ) (with m > n ) can be arranged in two disjoint complete ternary trees, one tree starting from ( 2 , 1 ) 
+        (for even-odd and odd-even pairs), and the other tree starting from ( 3 , 1 )(for odd-odd pairs).
+        The children of each vertex ( m , n ) are generated as follows:
+
+            Branch 1: ( 2 m − n , m )
+            Branch 2: ( 2 m + n , m )
+            Branch 3: ( m + 2 n , n )
+
+        This scheme is exhaustive and non-redundant with no invalid members. 
+    '''
+    m, n = list
+
+    if gcd(m, n) == 1:
+        if m > n:
+            pair1 = [2 * m - n, m]
+            pair2 = [2 * m + n, m]
+            pair3 = [m + 2 * n, n]
+        else:
+            pair1 = [2 * n - m, n]
+            pair2 = [2 * n + m, n]
+            pair3 = [n + 2 * m, m]
+    else:
+        return -1    
+    return pair1, pair2, pair3
+
+def getRandomCoPrimePair(n): # n is the maximum of the random number
+    r = []
+    while True:
+        r = [random.randint(1, n), random.randint(1, n)]
+        if (gcd(r[0], r[1]) == 1):
+            return r
+
+def CRT_Setup(n_equations):
+
+    address = "10000prime.txt"
+    primes = import_primes(address)
+
+    Random_co_primes = []
+    Generated_co_primes = []
+
+    for i in range(4):
+    # random co_primes block
+        r = getRandomCoPrimePair(1000)
+        Random_co_primes.append(r[0])
+        Random_co_primes.append(r[1])
+    # block end ------------------
+
+    # generated co_primes block
+        g = generateCoPrime(r)[random.randint(0, 2)]
+        Generated_co_primes.append(g[0])
+        Generated_co_primes.append(g[1])
+    # block end ------------------
+
+    
+    print(Random_co_primes)
+    print(Generated_co_primes)
+
+    # choosing a prime randomly from the dataset 1000prime.
+    mk_list = list()
+    m = 1
+    for i in range(n_equations):
+        r = random.randint(0, len(primes) - 1)
+        mk_list.append(primes[r])
+        m *= mk_list[i]
+
+    # choosing a where a is from  a mod mk
+    a_list = list()
+    i = 0
+
+    # generate co-prime to mk
+    while i < n_equations:
+        # problem 1: random number should be >= size(n digits
+        r = random.randint(10 ** (len(str(mk_list[i])) - 1), mk_list[i] - 1)
+        #
+        if gcd(r, mk_list[i]) == 1:
+            a_list.append(r)
+            i += 1
+    # end of generating co-primes of mk
+
+    #
+    Mk_list = list()
+    for i in mk_list:
+        Mk_value = m // i
+        Mk_list.append(Mk_value)
+
+    y_list = list()
+    for i in range(n_equations):
+        y_list.append(multiplicativeInverse(Mk_list[i], mk_list[i]))
+
+    X = 0
+    # X is 23 and m = 105
+    for i in range(n_equations):
+        X += Mk_list[i] * a_list[i] * y_list[i]
+    X = X % m
+
+    result = [X, mk_list]
+    for i in range(n_equations):
+        result.append([a_list[i], mk_list[i]])
+    return result
+
 
 def main():
+
+    print(CRT_Setup(3))
     # n = int(input("Choose the number of Generals (n)>>> "))
     n = 5
     # result = ChineseRemainderTheoremSetup(n)
@@ -166,10 +225,10 @@ def main():
               [10615, 42797], [1085, 1217], [47146, 60601]]
     SecretKey = result[0]
     mlist = result[1]
-
+'''
     for i in result[2:]:
         print(i, test(i, SecretKey, mlist))
-    
+ 
     #pwListGenerator(1085, 1300)
     #attackList = genAttack(5, 10000)
     attackList = bruteForce('keys.txt')
@@ -178,7 +237,7 @@ def main():
             print(i, "We have broke your system :)")
 
     #print(test([79839, 98041], SecretKey, mlist))
-
+'''
 
 if __name__ == '__main__':
     main()
