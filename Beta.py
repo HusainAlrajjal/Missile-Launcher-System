@@ -160,7 +160,7 @@ def getCoPrimes(n):
         '''
     # generated co_primes block
         #  g = generateCoPrime(getRandomCoPrimePair(you might specify the max possible mk value from here))[random.randint(0, 2)]
-        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 200)))[random.randint(0, 2)]
+        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 1000)))[random.randint(0, 2)]
         Generated_co_primes.append(g[0])
         Generated_co_primes.append(g[1])
     # block end ------------------
