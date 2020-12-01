@@ -168,8 +168,8 @@ def get_a(m):
             return r
 
 
-def CRT_Setup(n_equations, digits):
-    coCrimesDepth = 10 ** digits
+def CRT_Setup(n_equations, min_digits):
+    coCrimesDepth = 10 ** min_digits
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
 
     # ---------------------myTestingArea-----------------------------
