@@ -138,6 +138,16 @@ def bruteForce(pwList):
     return attackKeys
 
 
+def Hbrute_force(N):
+    pairs = list()
+    N = 10 ** N
+    for n in range(2, N):
+        for i in range(1, n):
+            pairs.append((i, n))
+            print((i, n))
+    return pairs, len(pairs)
+
+
 # m > n
 def generateCoPrime(list):
     '''
@@ -174,7 +184,7 @@ def getRandomCoPrimePair(n):  # n is the maximum of the random number
     while True:
         r = [random.randint(2, n), random.randint(2, n)]
         # print(r)
-        if (gcd(r[0], r[1]) == 1):
+        if gcd(r[0], r[1]) == 1:
             return r
 
 
@@ -229,10 +239,10 @@ def get_a(m):
             return r
 
 
-def CRT_Setup(n_equations):
+def CRT_Setup(n_equations, digits):
     address = "10000prime.txt"
     primes = import_primes(address)
-    coCrimesDepth = 10 ** 3
+    coCrimesDepth = 10 ** digits
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
     # print(co_primes)
 
@@ -335,13 +345,11 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
       '''
 
     if len(MList) < k:
-        return False,'Invalid threshold (k) input'
+        return False, 'Invalid threshold (k) input'
 
     keysSet = set(anonymous_keys)
     if len(keysSet) < k:
         return False, 'No Sufficient Keys!!'
-
-
 
     true_test = 0
     for key in keysSet:
@@ -353,15 +361,29 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
 
 def main():
     # CRT_Setup(5)
-
+    digits = 300
     k = 2  # threshold
     n = 2
-    x, MList, keys = CRT_Setup(n)
+    x, MList, keys = CRT_Setup(n, digits)
     print("TOP secret (X)\t\t\t\t:", x)
     print("TOP secret mods (m_list)\t:", MList)
     print("Generated Key pairs\t\t\t:", keys)
     print('Condition to succeed (k)\t:', k)
     print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
+
+
+    '''
+    Brute Force Attack Testing
+    
+    ti = time.time_ns()
+    brute_force_keys = Hbrute_force(digits)
+    ti = time.time_ns() - ti
+    print(ti / (1000000000), 'sec')
+    ti = time.time_ns()
+    print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, brute_force_keys[0], k), brute_force_keys[1])
+    ti = time.time_ns() - ti
+    print(ti / (1000000000), 'sec')
+    '''
 
     # n = int(input("Choose the number of Generals (n)>>> "))
     # result = ChineseRemainderTheoremSetup(n)
