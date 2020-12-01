@@ -1,4 +1,5 @@
-import random, time
+import random
+import time
 
 
 # read datset from a txt file
@@ -65,14 +66,14 @@ def multiplicativeInverse(a, m):
 
 def EEA(a, b):
     # Base source https://www.geeksforgeeks.org/python-program-for-basic-and-extended-euclidean-algorithms-2/
-    # Base Case  
+    # Base Case
     if a == 0:
         return b, 0, 1
 
     gcd, x1, y1 = EEA(b % a, a)
 
-    # Update x and y using results of recursive  
-    # call  
+    # Update x and y using results of recursive
+    # call
     x = y1 - (b // a) * x1
     y = x1
 
@@ -203,7 +204,8 @@ def getCoPrimes(n, depthOfRandomness):
         '''
         # generated co_primes block
         #  g = generateCoPrime(getRandomCoPrimePair(you might specify the max possible mk value from here))[random.randint(0, 2)]
-        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, depthOfRandomness)))[random.randint(0, 2)]
+        g = generateCoPrime(getRandomCoPrimePair(
+            random.randint(2, depthOfRandomness)))[random.randint(0, 2)]
         # print(g)
         Generated_co_primes.add(g[0])
         Generated_co_primes.add(g[1])
@@ -345,7 +347,7 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
       '''
 
     if len(MList) < k:
-        return False, 'Invalid threshold (k) input'
+        return False, 'The missile needs at least ' + str(k) + ' keys to launch it but only ' + str(len(MList)) + ' were generated'
 
     keysSet = set(anonymous_keys)
     if len(keysSet) < k:
@@ -361,9 +363,9 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
 
 def main():
     # CRT_Setup(5)
-    digits = 300
-    k = 2  # threshold
-    n = 2
+    digits = 2
+    k = 5  # threshold
+    n = 5
     x, MList, keys = CRT_Setup(n, digits)
     print("TOP secret (X)\t\t\t\t:", x)
     print("TOP secret mods (m_list)\t:", MList)
@@ -371,7 +373,6 @@ def main():
     print('Condition to succeed (k)\t:', k)
     print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
 
-    
     '''
     Brute Force Attack Testing
     
