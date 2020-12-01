@@ -214,7 +214,8 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    co_primes = getCoPrimes(n_equations, 1000000000000000000000000000000000000000000000)
+    coCrimesDepth = 31983337368222213686224544357340898871713893973955578984857998983110762461334846739756925715092584771163655363068683871109236397752483975228566820286172548489524719054827318799522189285275785302137539670670209755287134528
+    co_primes = getCoPrimes(n_equations, coCrimesDepth)
     #print(co_primes)
 
     #primes = co_primes
@@ -246,21 +247,29 @@ def CRT_Setup(n_equations):
     all_M_multiplied = getM(co_primes)
     # co_primes = [3, 5, 7]
     # all_M_multiplied = 105
-    X = 0
+    x = 0
     #print('a', 'mod','m' , '|', 'a',' M', '(M mod coPrime)')
+    MList = list()
     for coPrime in co_primes:
         a = get_a(coPrime)
-        Mi = int(all_M_multiplied / coPrime)
-        X += a * Mi * int(inverseModuleN(Mi, coPrime))
+        Mi = int(all_M_multiplied // coPrime)
+        x += a * Mi * int(inverseModuleN(Mi, coPrime))
+        MList.append(Mi)
         #print(r, Mi, Mi % coPrime, X)
         # print(a, 'mod',coPrime , '|', a, Mi, multiplicativeInverse(Mi, coPrime))
         print(a, 'mod', coPrime)
-    print('x = ', X % all_M_multiplied)
+    print('x = ', x % all_M_multiplied)
+    print(len(str(x)))
+
+    for m in MList:
+        print(m)
+
+
 
 
     #---------------------myTestingArea-----------------------------
 
-    #
+    
     Mk_list = list()
     for i in mk_list:
         Mk_value = m // i
