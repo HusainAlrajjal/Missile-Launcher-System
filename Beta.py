@@ -190,8 +190,8 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    co_primes = getCoPrimes(n_equations, 10)
-    print(co_primes)
+    co_primes = getCoPrimes(n_equations, 1000)
+    #print(co_primes)
 
     #primes = co_primes
     # choosing a prime randomly from the dataset 1000prime.
@@ -205,7 +205,7 @@ def CRT_Setup(n_equations):
     a_list = list()
     i = 0
 
-    print(mk_list)
+    #print(mk_list)
 
     # generate co-prime to mk
     while i < n_equations:
@@ -218,6 +218,7 @@ def CRT_Setup(n_equations):
     # end of generating co-primes of mk
 
     #---------------------myTestingArea-----------------------------
+
     all_M_multiplied = getM(co_primes)
     # co_primes = [3, 5, 7]
     # all_M_multiplied = 105
@@ -258,8 +259,8 @@ def CRT_Setup(n_equations):
 
 
 def main():
-
-    print(CRT_Setup(5))
+    CRT_Setup(5)
+    #print(CRT_Setup(5))
     # n = int(input("Choose the number of Generals (n)>>> "))
     n = 5
     # result = ChineseRemainderTheoremSetup(n)
