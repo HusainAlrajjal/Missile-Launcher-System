@@ -214,7 +214,7 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    coCrimesDepth = 31983337368222213686224544357340898871713893973955578984857998983110762461334846739756925715092584771163655363068683871109236397752483975228566820286172548489524719054827318799522189285275785302137539670670209755287134528
+    coCrimesDepth = 12
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
     #print(co_primes)
 
@@ -262,7 +262,7 @@ def CRT_Setup(n_equations):
     print(len(str(x)))
 
     for m in MList:
-        print(m)
+        print(x % m)
 
 
 
