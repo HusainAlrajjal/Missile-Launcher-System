@@ -139,18 +139,21 @@ def generateCoPrime(list):
     return pair1, pair2, pair3
 
 def getRandomCoPrimePair(n): # n is the maximum of the random number
+    if n == 2: # Fixes unresponding problem
+        n += 1
     r = []
     while True:
         r = [random.randint(2, n), random.randint(2, n)]
+        #print(r)
         if (gcd(r[0], r[1]) == 1):
             return r
 
-
-
-def getCoPrimes(n):
+def getCoPrimes(n, depthOfRandomness):
+    # n += 1
     Random_co_primes = []
-    Generated_co_primes = []
-    for i in range(int(n/2)):
+    Generated_co_primes = set()
+    # for i in range(int(n/2)):
+    while len(Generated_co_primes) < n:
         '''
     # random co_primes block
         r = getRandomCoPrimePair(1000)
@@ -160,17 +163,34 @@ def getCoPrimes(n):
         '''
     # generated co_primes block
         #  g = generateCoPrime(getRandomCoPrimePair(you might specify the max possible mk value from here))[random.randint(0, 2)]
-        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, 1000)))[random.randint(0, 2)]
-        Generated_co_primes.append(g[0])
-        Generated_co_primes.append(g[1])
+        g = generateCoPrime(getRandomCoPrimePair(random.randint(2, depthOfRandomness)))[random.randint(0, 2)]
+        # print(g)
+        Generated_co_primes.add(g[0])
+        Generated_co_primes.add(g[1])
+        #print(len(Generated_co_primes))
     # block end ------------------
+    if len(Generated_co_primes) == (n+1):
+        Generated_co_primes.pop()
     return Generated_co_primes
+
+def getM(mList):
+    M = 1
+    for m in mList:
+        M *= m
+    return M
+
+
+def get_a(m):
+    while True:
+        r = random.randint(2, m)
+        if gcd(r, m) == 1 and r != m:
+            return r
 
 def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    co_primes = getCoPrimes(8)
+    co_primes = getCoPrimes(n_equations, 100000)
     print(co_primes)
 
     #primes = co_primes
@@ -181,10 +201,11 @@ def CRT_Setup(n_equations):
         r = random.randint(0, len(primes) - 1)
         mk_list.append(primes[r])
         m *= mk_list[i]
-
     # choosing a where a is from  a mod mk
     a_list = list()
     i = 0
+
+    print(mk_list)
 
     # generate co-prime to mk
     while i < n_equations:
@@ -195,6 +216,22 @@ def CRT_Setup(n_equations):
             a_list.append(r)
             i += 1
     # end of generating co-primes of mk
+
+    #---------------------myTestingArea-----------------------------
+    all_M_multiplied = getM(co_primes)
+    co_primes = [3, 5, 7]
+    all_M_multiplied = 105
+    X = 0
+    for coPrime in co_primes:
+        r = get_a(coPrime)
+        Mi = int(all_M_multiplied / coPrime)
+        X += r * Mi * (Mi % coPrime)
+        #print(r, Mi, Mi % coPrime, X)
+        print(r, 'mod ',coPrime)
+    print('x = ', X % all_M_multiplied)
+
+
+    #---------------------myTestingArea-----------------------------
 
     #
     Mk_list = list()
