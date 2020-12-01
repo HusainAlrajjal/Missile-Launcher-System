@@ -1,6 +1,6 @@
-import random
-import time
+import random, time, sys
 
+sys.setrecursionlimit(5000)
 
 # read datset from a txt file
 def import_primes(address):
@@ -363,16 +363,16 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
 
 def main():
     # CRT_Setup(5)
-    digits = 2
-    k = 5  # threshold
-    n = 5
-    x, MList, keys = CRT_Setup(n, digits)
+    min_digits = 1700
+    k = 10 # threshold
+    n = 7
+    x, MList, keys = CRT_Setup(n, min_digits)
     print("TOP secret (X)\t\t\t\t:", x)
+    print("TOP secret length (X)\t\t:", len(str(x)))
     print("TOP secret mods (m_list)\t:", MList)
     print("Generated Key pairs\t\t\t:", keys)
     print('Condition to succeed (k)\t:', k)
     print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
-
     '''
     Brute Force Attack Testing
     
