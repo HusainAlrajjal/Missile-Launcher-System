@@ -89,7 +89,7 @@ def inverseModuleN(a, m):
         else:
             return inverseModN[1]
     else:
-        print('No multiplicative inverse for ', str(a), 'mod', str(m))
+        #print('No multiplicative inverse for ', str(a), 'mod', str(m))
         return False
       
 
@@ -196,6 +196,18 @@ def getCoPrimes(n, depthOfRandomness):
         Generated_co_primes.add(g[1])
         #print(len(Generated_co_primes))
     # block end ------------------
+
+        bigM = getM(Generated_co_primes)
+        toBeRemoved = []
+        for cP in Generated_co_primes:
+            Mi = int(bigM // cP)
+            if int(inverseModuleN(Mi, cP)) == False:
+                toBeRemoved.append(cP)
+
+        for e in toBeRemoved:
+            Generated_co_primes.remove(e)
+
+
     if len(Generated_co_primes) == (n+1):
         Generated_co_primes.pop()
     return Generated_co_primes
@@ -217,7 +229,7 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    coCrimesDepth = 123
+    coCrimesDepth = 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
     #print(co_primes)
 
