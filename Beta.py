@@ -83,11 +83,15 @@ def EEA(a, b):
 
 def inverseModuleN(a, m):
     inverseModN = EEA(a, m)
-
-    if inverseModN[1] < 0:
-        return inverseModN[1] + m
+    gcd = inverseModN[0]
+    if gcd == 1:
+        if inverseModN[1] < 0:
+            return inverseModN[1] + m
+        else:
+            return inverseModN[1]
     else:
-        return inverseModN[1]
+        print('No multiplicative inverse for ', str(a), 'mod', str(m))
+        return False
       
 
 def test(key, X, mlist):
@@ -252,17 +256,16 @@ def CRT_Setup(n_equations):
     MList = list()
     for coPrime in co_primes:
         a = get_a(coPrime)
-        Mi = int(all_M_multiplied // coPrime)
+        Mi = int(all_M_multiplied / coPrime)
         x += a * Mi * int(inverseModuleN(Mi, coPrime))
+        # print(int(multiplicativeInverse(Mi, coPrime)))
+        # print(int(inverseModuleN(Mi, coPrime)))
         MList.append(Mi)
         #print(r, Mi, Mi % coPrime, X)
         # print(a, 'mod',coPrime , '|', a, Mi, multiplicativeInverse(Mi, coPrime))
         print(a, 'mod', coPrime)
     print('x = ', x % all_M_multiplied)
-    print(len(str(x)))
 
-    for m in MList:
-        print(x % m)
 
 
 
