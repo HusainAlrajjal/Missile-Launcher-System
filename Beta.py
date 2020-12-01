@@ -351,7 +351,7 @@ def main():
     #CRT_Setup(5)
 
     k = 3 #threshold
-    x, MList, keys = CRT_Setup(5)
+    x, MList, keys = CRT_Setup(20)
     checkSuppliedKeys(x, MList, keys, k)
 
     # n = int(input("Choose the number of Generals (n)>>> "))
