@@ -1,6 +1,5 @@
 import random, time
 
-
 # read datset from a txt file
 def import_primes(address):
     dataset = list()
@@ -218,7 +217,7 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    coCrimesDepth = 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+    coCrimesDepth = 2249701860096272644492685148583407506025325954704327890853544275148531303980622995982242451066360917954531966923161095569999199285760782819786090359275952132189751559520933021541988979714710312006961292783571096977879605633227228448335928764811526055260449765791060786451513389070353265819925094027714180137686417593516806835448445504253384957506765696832921541254408971458728263829
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
     #print(co_primes)
 
@@ -253,19 +252,20 @@ def CRT_Setup(n_equations):
     # all_M_multiplied = 105
     x = 0
     #print('a', 'mod','m' , '|', 'a',' M', '(M mod coPrime)')
-    MList = list()
+    keyList = []
     for coPrime in co_primes:
         a = get_a(coPrime)
         Mi = int(all_M_multiplied // coPrime)
         x += a * Mi * int(inverseModuleN(Mi, coPrime))
+        keyList.append([a, coPrime])
         # print(int(multiplicativeInverse(Mi, coPrime)))
         # print(int(inverseModuleN(Mi, coPrime)))
-        MList.append(Mi)
+        #MList.append(Mi)
         #print(r, Mi, Mi % coPrime, X)
         # print(a, 'mod',coPrime , '|', a, Mi, multiplicativeInverse(Mi, coPrime))
-        print(a, 'mod', coPrime)
-    print('x = ', x % all_M_multiplied)
-
+        #print(a, 'mod', coPrime)
+    #print('x = ', x % all_M_multiplied)
+    return [x, co_primes, keyList]
 
 
     '''
@@ -287,7 +287,7 @@ def CRT_Setup(n_equations):
 
     #---------------------myTestingArea-----------------------------
 
-    
+    '''    
     Mk_list = list()
     for i in mk_list:
         Mk_value = m // i
@@ -307,11 +307,17 @@ def CRT_Setup(n_equations):
     for i in range(n_equations):
         result.append([a_list[i], mk_list[i]])
     return result
+    '''
+def checkSuppliedKeys(x, co_primes, anonymous_keys, k): # k = threshold
+    validKeys = co_primes
+    
+
+    return x
 
 
 def main():
-    CRT_Setup(5)
-    #print(CRT_Setup(5))
+    #CRT_Setup(5)
+    print(CRT_Setup(5))
     # n = int(input("Choose the number of Generals (n)>>> "))
     n = 5
     # result = ChineseRemainderTheoremSetup(n)
