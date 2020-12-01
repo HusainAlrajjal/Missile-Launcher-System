@@ -257,7 +257,7 @@ def CRT_Setup(n_equations):
         a = get_a(coPrime)
         Mi = int(all_M_multiplied // coPrime)
         x += a * Mi * int(inverseModuleN(Mi, coPrime))
-        keyList.append([a, coPrime])
+        keyList.append((a, coPrime))
         # print(int(multiplicativeInverse(Mi, coPrime)))
         # print(int(inverseModuleN(Mi, coPrime)))
         #MList.append(Mi)
@@ -308,16 +308,36 @@ def CRT_Setup(n_equations):
         result.append([a_list[i], mk_list[i]])
     return result
     '''
-def checkSuppliedKeys(x, co_primes, anonymous_keys, k): # k = threshold
-    validKeys = co_primes
-    
+def checkSuppliedKeys(x, MList, anonymous_keys, k): # k = threshold
+
+    keysSet = set(anonymous_keys)
+
+    print(len(keysSet))
+
+    '''
+    First users will provide keysList to the system, the keyList will be tested whehter they are valid or fake keys
+    if the number validKeys is equal to k then the missile will be launched, 
+    otherwise, it will NOT be launched
+
+    in order to prevent the user from supplying the key more than one time, we put the keys into a set
+
+    complexity of brute-force would be 
+
+
+
+    '''
+
 
     return x
 
 
 def main():
     #CRT_Setup(5)
-    print(CRT_Setup(5))
+
+    k = 3 #threshold
+    x, MList, keys = CRT_Setup(5)
+    checkSuppliedKeys(x, MList, keys, k)
+
     # n = int(input("Choose the number of Generals (n)>>> "))
     n = 5
     # result = ChineseRemainderTheoremSetup(n)
