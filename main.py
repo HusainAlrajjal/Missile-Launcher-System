@@ -3,13 +3,10 @@ import sys
 sys.setrecursionlimit(5000)
 
 
-
-
-
-# CRT_Setup(5)
 min_digits = 2
 k = 10 # threshold
-n = 10
+n = 10  # number of keys to be generated
+
 x, MList, keys = CRT_Setup(n, min_digits)
 print("TOP secret (X)\t\t\t\t:", x)
 print("TOP secret length (X)\t\t:", len(str(x)))
