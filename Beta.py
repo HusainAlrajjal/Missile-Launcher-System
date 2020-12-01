@@ -190,7 +190,7 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    co_primes = getCoPrimes(n_equations, 100000)
+    co_primes = getCoPrimes(n_equations, 10)
     print(co_primes)
 
     #primes = co_primes
@@ -219,15 +219,17 @@ def CRT_Setup(n_equations):
 
     #---------------------myTestingArea-----------------------------
     all_M_multiplied = getM(co_primes)
-    co_primes = [3, 5, 7]
-    all_M_multiplied = 105
+    # co_primes = [3, 5, 7]
+    # all_M_multiplied = 105
     X = 0
+    #print('a', 'mod','m' , '|', 'a',' M', '(M mod coPrime)')
     for coPrime in co_primes:
-        r = get_a(coPrime)
+        a = get_a(coPrime)
         Mi = int(all_M_multiplied / coPrime)
-        X += r * Mi * (Mi % coPrime)
+        X += a * Mi * int(multiplicativeInverse(Mi, coPrime))
         #print(r, Mi, Mi % coPrime, X)
-        print(r, 'mod ',coPrime)
+        # print(a, 'mod',coPrime , '|', a, Mi, multiplicativeInverse(Mi, coPrime))
+        print(a, 'mod', coPrime)
     print('x = ', X % all_M_multiplied)
 
 
