@@ -3,7 +3,7 @@ import sys
 sys.setrecursionlimit(5000)
 
 
-min_digits = 2
+min_digits = 1900
 k = 10 # threshold
 n = 10  # number of keys to be generated
 
