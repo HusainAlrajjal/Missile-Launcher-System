@@ -232,7 +232,7 @@ def get_a(m):
 def CRT_Setup(n_equations):
     address = "10000prime.txt"
     primes = import_primes(address)
-    coCrimesDepth = 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+    coCrimesDepth = 10 ** 3
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
     # print(co_primes)
 
@@ -334,7 +334,15 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
 
       '''
 
+    if len(MList) < k:
+        return False,'Invalid threshold (k) input'
+
     keysSet = set(anonymous_keys)
+    if len(keysSet) < k:
+        return False, 'No Sufficient Keys!!'
+
+
+
     true_test = 0
     for key in keysSet:
         if test(key, x, MList):
@@ -346,10 +354,14 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
 def main():
     # CRT_Setup(5)
 
-    k = 3  # threshold
-    n = 20
+    k = 2  # threshold
+    n = 2
     x, MList, keys = CRT_Setup(n)
-    print(checkSuppliedKeys(x, MList, keys, 20))
+    print("TOP secret (X)\t\t\t\t:", x)
+    print("TOP secret mods (m_list)\t:", MList)
+    print("Generated Key pairs\t\t\t:", keys)
+    print('Condition to succeed (k)\t:', k)
+    print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
 
     # n = int(input("Choose the number of Generals (n)>>> "))
     # result = ChineseRemainderTheoremSetup(n)
@@ -359,20 +371,20 @@ def main():
     # SecretKey = result[0]
     # mlist = result[1]
 
+    '''
+        for i in result[2:]:
+            print(i, test(i, SecretKey, mlist))
+     
+        #pwListGenerator(1085, 1300)
+        #attackList = genAttack(5, 10000)
+        attackList = bruteForce('keys.txt')
+        for i in attackList:
+            if test(i, SecretKey, mlist):
+                print(i, "We have broke your system :)")
+    
+        #print(test([79839, 98041], SecretKey, mlist))
+    '''
 
-'''
-    for i in result[2:]:
-        print(i, test(i, SecretKey, mlist))
- 
-    #pwListGenerator(1085, 1300)
-    #attackList = genAttack(5, 10000)
-    attackList = bruteForce('keys.txt')
-    for i in attackList:
-        if test(i, SecretKey, mlist):
-            print(i, "We have broke your system :)")
-
-    #print(test([79839, 98041], SecretKey, mlist))
-'''
 
 if __name__ == '__main__':
     main()
