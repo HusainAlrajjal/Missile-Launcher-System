@@ -98,7 +98,7 @@ def test(key, X, mlist):
     # key[0] = key[0] % key[1]
 
     for i in mlist:
-        if key[1] == i:
+        if key[1] == i and key[1] != 0:
             return (X % key[1]) == key[0]
 
     return False
@@ -371,7 +371,7 @@ def main():
     print('Condition to succeed (k)\t:', k)
     print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
 
-
+    
     '''
     Brute Force Attack Testing
     
