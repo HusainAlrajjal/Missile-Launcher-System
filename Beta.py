@@ -66,6 +66,30 @@ def multiplicativeInverse(a, m):
     return -1  # -1 indicates that there's no inverse for a mod m
 
 
+def EEA(a, b):
+    #Base source https://www.geeksforgeeks.org/python-program-for-basic-and-extended-euclidean-algorithms-2/
+    # Base Case  
+    if a == 0 :   
+        return b,0,1
+             
+    gcd,x1,y1 = EEA(b%a, a)  
+     
+    # Update x and y using results of recursive  
+    # call  
+    x = y1 - (b//a) * x1  
+    y = x1  
+     
+    return gcd,x,y 
+
+def inverseModuleN(a, m):
+    inverseModN = EEA(a, m)
+
+    if inverseModN[1] < 0:
+        return inverseModN[1] + m
+    else:
+        return inverseModN[1]
+      
+
 def test(key, X, mlist):
     # this to ensure that the left pair of the key is less than the right pair of the key
     # we might check for the hacker and kick him out  this is the recording around [ 2: 30: 00 ]
@@ -190,7 +214,7 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    co_primes = getCoPrimes(n_equations, 1000)
+    co_primes = getCoPrimes(n_equations, 1000000000000000000000000000000000000000000000)
     #print(co_primes)
 
     #primes = co_primes
@@ -227,7 +251,7 @@ def CRT_Setup(n_equations):
     for coPrime in co_primes:
         a = get_a(coPrime)
         Mi = int(all_M_multiplied / coPrime)
-        X += a * Mi * int(multiplicativeInverse(Mi, coPrime))
+        X += a * Mi * int(inverseModuleN(Mi, coPrime))
         #print(r, Mi, Mi % coPrime, X)
         # print(a, 'mod',coPrime , '|', a, Mi, multiplicativeInverse(Mi, coPrime))
         print(a, 'mod', coPrime)
