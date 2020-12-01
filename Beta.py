@@ -1,5 +1,6 @@
 import random, time
 
+
 # read datset from a txt file
 def import_primes(address):
     dataset = list()
@@ -14,7 +15,6 @@ def import_primes(address):
 
     file1.close()
     return dataset
-
 
 
 def fermat_primality_test(n, coprime_bases_list):
@@ -35,8 +35,6 @@ def gcd(a, b):
         return gcd(b, modExp(a, 1, b))
     else:
         return gcd(b, a)
-
-
 
 
 def modExp(b, n, m):
@@ -66,19 +64,20 @@ def multiplicativeInverse(a, m):
 
 
 def EEA(a, b):
-    #Base source https://www.geeksforgeeks.org/python-program-for-basic-and-extended-euclidean-algorithms-2/
+    # Base source https://www.geeksforgeeks.org/python-program-for-basic-and-extended-euclidean-algorithms-2/
     # Base Case  
-    if a == 0 :   
-        return b,0,1
-             
-    gcd,x1,y1 = EEA(b%a, a)  
-     
+    if a == 0:
+        return b, 0, 1
+
+    gcd, x1, y1 = EEA(b % a, a)
+
     # Update x and y using results of recursive  
     # call  
-    x = y1 - (b//a) * x1  
-    y = x1  
-     
-    return gcd,x,y 
+    x = y1 - (b // a) * x1
+    y = x1
+
+    return gcd, x, y
+
 
 def inverseModuleN(a, m):
     inverseModN = EEA(a, m)
@@ -89,9 +88,9 @@ def inverseModuleN(a, m):
         else:
             return inverseModN[1]
     else:
-        #print('No multiplicative inverse for ', str(a), 'mod', str(m))
+        # print('No multiplicative inverse for ', str(a), 'mod', str(m))
         return False
-      
+
 
 def test(key, X, mlist):
     # this to ensure that the left pair of the key is less than the right pair of the key
@@ -116,26 +115,28 @@ def genAttack(nDigits, sizeOfAttack):
         attackKeys.append(r)
     return attackKeys
 
+
 # generate pwList from start up to end inclusive
 def pwListGenerator(start, end):
     if start < end:
         end += 1
         pwList = open("keys.txt", "w")
-        for i in range(start, end): #99999
+        for i in range(start, end):  # 99999
             for j in range(start, end):
                 r = [i, j]
-                pwList.write(str(i) +" "+ str(j) + "\n")
+                pwList.write(str(i) + " " + str(j) + "\n")
         pwList.close()
 
 
 def bruteForce(pwList):
-    #pwListGenerator(10000, 14000)
+    # pwListGenerator(10000, 14000)
     attackKeys = []
-    with open(pwList,'r') as keys: 
+    with open(pwList, 'r') as keys:
         for line in keys:
             attackKeys.append([int(line.split()[0]), int(line.split()[1])])
         keys.close()
     return attackKeys
+
 
 # m > n
 def generateCoPrime(list):
@@ -162,18 +163,20 @@ def generateCoPrime(list):
             pair2 = [2 * n + m, n]
             pair3 = [n + 2 * m, m]
     else:
-        return -1    
+        return -1
     return pair1, pair2, pair3
 
-def getRandomCoPrimePair(n): # n is the maximum of the random number
-    if n == 2: # Fixes unresponding problem
+
+def getRandomCoPrimePair(n):  # n is the maximum of the random number
+    if n == 2:  # Fixes unresponding problem
         n += 1
     r = []
     while True:
         r = [random.randint(2, n), random.randint(2, n)]
-        #print(r)
+        # print(r)
         if (gcd(r[0], r[1]) == 1):
             return r
+
 
 def getCoPrimes(n, depthOfRandomness):
     # n += 1
@@ -188,14 +191,14 @@ def getCoPrimes(n, depthOfRandomness):
         Random_co_primes.append(r[1])
     # block end ------------------
         '''
-    # generated co_primes block
+        # generated co_primes block
         #  g = generateCoPrime(getRandomCoPrimePair(you might specify the max possible mk value from here))[random.randint(0, 2)]
         g = generateCoPrime(getRandomCoPrimePair(random.randint(2, depthOfRandomness)))[random.randint(0, 2)]
         # print(g)
         Generated_co_primes.add(g[0])
         Generated_co_primes.add(g[1])
-        #print(len(Generated_co_primes))
-    # block end ------------------
+        # print(len(Generated_co_primes))
+        # block end ------------------
 
         bigM = getM(Generated_co_primes)
         toBeRemoved = []
@@ -207,10 +210,10 @@ def getCoPrimes(n, depthOfRandomness):
         for e in toBeRemoved:
             Generated_co_primes.remove(e)
 
-
-    if len(Generated_co_primes) == (n+1):
+    if len(Generated_co_primes) == (n + 1):
         Generated_co_primes.pop()
     return Generated_co_primes
+
 
 def getM(mList):
     M = 1
@@ -225,15 +228,15 @@ def get_a(m):
         if gcd(r, m) == 1 and r != m:
             return r
 
-def CRT_Setup(n_equations):
 
+def CRT_Setup(n_equations):
     address = "10000prime.txt"
     primes = import_primes(address)
     coCrimesDepth = 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
-    #print(co_primes)
+    # print(co_primes)
 
-    #primes = co_primes
+    # primes = co_primes
     # choosing a prime randomly from the dataset 1000prime.
     mk_list = list()
     m = 1
@@ -245,7 +248,7 @@ def CRT_Setup(n_equations):
     a_list = list()
     i = 0
 
-    #print(mk_list)
+    # print(mk_list)
 
     # generate co-prime to mk
     while i < n_equations:
@@ -257,13 +260,13 @@ def CRT_Setup(n_equations):
             i += 1
     # end of generating co-primes of mk
 
-    #---------------------myTestingArea-----------------------------
+    # ---------------------myTestingArea-----------------------------
 
     all_M_multiplied = getM(co_primes)
     # co_primes = [3, 5, 7]
     # all_M_multiplied = 105
     x = 0
-    #print('a', 'mod','m' , '|', 'a',' M', '(M mod coPrime)')
+    # print('a', 'mod','m' , '|', 'a',' M', '(M mod coPrime)')
     keyList = []
     for coPrime in co_primes:
         a = get_a(coPrime)
@@ -272,13 +275,12 @@ def CRT_Setup(n_equations):
         keyList.append((a, coPrime))
         # print(int(multiplicativeInverse(Mi, coPrime)))
         # print(int(inverseModuleN(Mi, coPrime)))
-        #MList.append(Mi)
-        #print(r, Mi, Mi % coPrime, X)
+        # MList.append(Mi)
+        # print(r, Mi, Mi % coPrime, X)
         # print(a, 'mod',coPrime , '|', a, Mi, multiplicativeInverse(Mi, coPrime))
-        #print(a, 'mod', coPrime)
-    #print('x = ', x % all_M_multiplied)
+        # print(a, 'mod', coPrime)
+    # print('x = ', x % all_M_multiplied)
     return [x, co_primes, keyList]
-
 
     '''
     x = 30282329560514739880937523243545265002227948803408033760458273597819622259292231078763736643939378064237369129800694074213948946853798334951599563272369652275492744345919994892448947481506740892224970186009627264150519045462851645031849113729047952147524276090715180495108083033210537920185120627876374619402460919322619104903151511172866841674537074492685148583407506025325954704327890853544275148531303980622995982242451066360917954531966923161095569999199285760782819786090359275952132189751559520933021541988979714710312006961292783571096977879605633227228448335928764811526055260449765791060786451513389070353265819925094027714180137686417593516806835448445504253384957506765696832921541254408971458728263829
@@ -295,9 +297,7 @@ def CRT_Setup(n_equations):
         print(x % e[1] == e[0])    
     '''
 
-
-
-    #---------------------myTestingArea-----------------------------
+    # ---------------------myTestingArea-----------------------------
 
     '''    
     Mk_list = list()
@@ -320,48 +320,46 @@ def CRT_Setup(n_equations):
         result.append([a_list[i], mk_list[i]])
     return result
     '''
-def checkSuppliedKeys(x, MList, anonymous_keys, k): # k = threshold
-    print(x)
-    print(anonymous_keys)
+
+
+def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
+    '''
+      First users will provide keysList to the system, the keyList will be tested whehter they are valid or fake keys
+      if the number validKeys is equal to k then the missile will be launched,
+      otherwise, it will NOT be launched
+
+      in order to prevent the user from supplying the key more than one time, we put the keys into a set
+
+      complexity of brute-force would be
+
+      '''
+
     keysSet = set(anonymous_keys)
-
+    true_test = 0
     for key in keysSet:
-        print((x % key[1]) == key[0])
-        
-    print(len(keysSet))
+        if test(key, x, MList):
+            true_test += 1
 
-    '''
-    First users will provide keysList to the system, the keyList will be tested whehter they are valid or fake keys
-    if the number validKeys is equal to k then the missile will be launched, 
-    otherwise, it will NOT be launched
-
-    in order to prevent the user from supplying the key more than one time, we put the keys into a set
-
-    complexity of brute-force would be 
-
-
-
-    '''
-
-
-    return x
+    return 0 < k <= true_test
 
 
 def main():
-    #CRT_Setup(5)
+    # CRT_Setup(5)
 
-    k = 3 #threshold
-    x, MList, keys = CRT_Setup(20)
-    checkSuppliedKeys(x, MList, keys, k)
+    k = 3  # threshold
+    n = 20
+    x, MList, keys = CRT_Setup(n)
+    print(checkSuppliedKeys(x, MList, keys, 20))
 
     # n = int(input("Choose the number of Generals (n)>>> "))
-    n = 5
     # result = ChineseRemainderTheoremSetup(n)
     # print(result)
-    result = [2551626037209230983216, [98041, 13691, 42797, 1217, 60601], [79839, 98041], [10112, 13691],
-              [10615, 42797], [1085, 1217], [47146, 60601]]
-    SecretKey = result[0]
-    mlist = result[1]
+    # result = [2551626037209230983216, [98041, 13691, 42797, 1217, 60601], [79839, 98041], [10112, 13691],
+    #           [10615, 42797], [1085, 1217], [47146, 60601]]
+    # SecretKey = result[0]
+    # mlist = result[1]
+
+
 '''
     for i in result[2:]:
         print(i, test(i, SecretKey, mlist))
