@@ -217,7 +217,7 @@ def CRT_Setup(n_equations):
 
     address = "10000prime.txt"
     primes = import_primes(address)
-    coCrimesDepth = 2249701860096272644492685148583407506025325954704327890853544275148531303980622995982242451066360917954531966923161095569999199285760782819786090359275952132189751559520933021541988979714710312006961292783571096977879605633227228448335928764811526055260449765791060786451513389070353265819925094027714180137686417593516806835448445504253384957506765696832921541254408971458728263829
+    coCrimesDepth = 123
     co_primes = getCoPrimes(n_equations, coCrimesDepth)
     #print(co_primes)
 
@@ -309,9 +309,13 @@ def CRT_Setup(n_equations):
     return result
     '''
 def checkSuppliedKeys(x, MList, anonymous_keys, k): # k = threshold
-
+    print(x)
+    print(anonymous_keys)
     keysSet = set(anonymous_keys)
 
+    for key in keysSet:
+        print((x % key[1]) == key[0])
+        
     print(len(keysSet))
 
     '''
