@@ -10,12 +10,12 @@ def save_keys(keys):
     pwList.close()
 
 
-min_digits = 3
-k = 9  # threshold
-n = 10  # number of keys to be generated
 
-x, MList, keys = CRT_Setup(n, min_digits)
 print("\n------------------------Staff Only------------------------")
+min_digits = int(input('Enter Min digits>>'))
+k = int(input('Enter threshold (k) >>'))            # threshold
+n = int(input('Enter the number of generals (n) >>'))   # number of keys to be generated
+x, MList, keys = CRT_Setup(n, min_digits)
 print("TOP secret (N)\t\t:", x)
 print("TOP secret length (N)\t\t:", len(str(x)) ," digits")
 # print("TOP secret mods (m_list)\t:", MList)
