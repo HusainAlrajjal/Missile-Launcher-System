@@ -15,18 +15,20 @@ k = 9  # threshold
 n = 10  # number of keys to be generated
 
 x, MList, keys = CRT_Setup(n, min_digits)
-# print("TOP secret (N)\t\t\t\t:", x)
-# print("TOP secret length (N)\t\t:", len(str(x)))
+print("\n------------------------Staff Only------------------------")
+print("TOP secret (N)\t\t:", x)
+print("TOP secret length (N)\t\t:", len(str(x)) ," digits")
 # print("TOP secret mods (m_list)\t:", MList)
 # print("Generated Key pairs\t\t\t:", keys)
-# print('Condition to succeed (k)\t:', k)
+print('Condition to succeed (k)\t:', k)
 # print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
+print("------------------------Staff Only------------------------\n\n")
 
 testingKeys = []
 save_keys(keys)
-print("\nplease enter the key pair seperated by space [e.g. 62 102]: ")
+print("please enter the key pair seperated by space [e.g. 62 102]: ")
 print('To exit, please enter e\n')
-print('k = ', k, 'n = ', n)
+print('k = ', k, 'n = ', n + "\n")
 count = 0
 while True:
     count += 1
@@ -37,11 +39,11 @@ while True:
 
 
 #print(testingKeys)
-if checkSuppliedKeys(x, MList, testingKeys, k):
+isAllowed = checkSuppliedKeys(x, MList, testingKeys, k)
+if isAllowed == True:
     print('Welcome!, you may launch the Missile to destroy anything you want :)\n')
 else:
-    print('Warning!, Hacking attempt detected!!\n')
-
+    print(isAllowed[1] + "\n")
 
 # for k in keys:
 #     if gcd(k[0], k[1]) != 1:
