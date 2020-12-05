@@ -36,9 +36,11 @@ while True:
     testingKeys.append((int(userInput[0]), int(userInput[1])))
 
 
-print(testingKeys)
-print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, testingKeys, k))
-
+#print(testingKeys)
+if checkSuppliedKeys(x, MList, testingKeys, k):
+    print('Welcome!, you may launch the Missile to destroy anything you want :)\n')
+else:
+    print('Warning!, Hacking attempt detected!!\n')
 
 
 # for k in keys:
