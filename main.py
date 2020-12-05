@@ -1,19 +1,50 @@
 from MLS import *
 import sys
-sys.setrecursionlimit(5000)
+sys.setrecursionlimit(4500)
 
 
-min_digits = 1900
-k = 10 # threshold
+def save_keys(keys):
+    pwList = open("keys.txt", "w")
+    for key in keys:  # 99999
+        pwList.write(str(key[0]) + "    " + str(key[1]) + "\n")
+    pwList.close()
+
+
+min_digits = 3
+k = 9  # threshold
 n = 10  # number of keys to be generated
 
 x, MList, keys = CRT_Setup(n, min_digits)
-print("TOP secret (X)\t\t\t\t:", x)
-print("TOP secret length (X)\t\t:", len(str(x)))
-print("TOP secret mods (m_list)\t:", MList)
-print("Generated Key pairs\t\t\t:", keys)
-print('Condition to succeed (k)\t:', k)
-print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
+# print("TOP secret (N)\t\t\t\t:", x)
+# print("TOP secret length (N)\t\t:", len(str(x)))
+# print("TOP secret mods (m_list)\t:", MList)
+# print("Generated Key pairs\t\t\t:", keys)
+# print('Condition to succeed (k)\t:', k)
+# print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, keys, k))
+
+testingKeys = []
+save_keys(keys)
+print("\nplease enter the key pair seperated by space [e.g. 62 102]: ")
+print('To exit, please enter e\n')
+print('k = ', k, 'n = ', n)
+count = 0
+while True:
+    count += 1
+    userInput = input("key " + str(count) + ":\t").split()
+    if userInput[0] == 'e' or userInput[1] == 'e':
+        break
+    testingKeys.append((int(userInput[0]), int(userInput[1])))
+
+
+print(testingKeys)
+print('Validation Result?\t\t\t:', checkSuppliedKeys(x, MList, testingKeys, k))
+
+
+
+# for k in keys:
+#     if gcd(k[0], k[1]) != 1:
+#         print(k, 'Bug in your system')
+
 '''
 Brute Force Attack Testing
 ti = time.time_ns()

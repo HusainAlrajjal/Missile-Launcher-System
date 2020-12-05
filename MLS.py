@@ -62,7 +62,7 @@ def pwListGenerator(start, end):
         for i in range(start, end):  # 99999
             for j in range(start, end):
                 r = [i, j]
-                pwList.write(str(i) + " " + str(j) + "\n")
+                pwList.write(str(i) + "\t" + str(j) + "\n")
         pwList.close()
 
 
@@ -76,6 +76,7 @@ def bruteForce(pwList):
     return attackKeys
 
 
+# masqurading 
 def Hbrute_force(N):
     pairs = list()
     N = 10 ** N
