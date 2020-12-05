@@ -28,12 +28,13 @@ testingKeys = []
 save_keys(keys)
 print("please enter the key pair seperated by space [e.g. 62 102]: ")
 print('To exit, please enter e\n')
-print('k = ', k, 'n = ', n + "\n")
+print('k = ', k, 'n = ', n, "\n")
 count = 0
 while True:
     count += 1
     userInput = input("key " + str(count) + ":\t").split()
     if userInput[0] == 'e' or userInput[1] == 'e':
+        print()
         break
     testingKeys.append((int(userInput[0]), int(userInput[1])))
 
