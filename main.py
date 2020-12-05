@@ -44,7 +44,7 @@ isAllowed = checkSuppliedKeys(x, MList, testingKeys, k)
 if isAllowed == True:
     print('Welcome!, you may launch the Missile to destroy anything you want :)\n')
 else:
-    print(isAllowed[1] + "\n")
+    print(isAllowed[1], "\n")
 
 # for k in keys:
 #     if gcd(k[0], k[1]) != 1:
