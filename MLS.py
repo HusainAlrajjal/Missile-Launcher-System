@@ -215,7 +215,7 @@ def getXmodM_crt(keys):
         Mi = int(all_M_multiplied // key[1])
         x += key[0] * Mi * int(inverseModuleN(Mi, key[1]))
 
-    return x % all_M_multiplied
+    return (x % all_M_multiplied, all_M_multiplied)
 
 
 
