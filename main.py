@@ -43,7 +43,7 @@ while True:
 #print(testingKeys)
 isAllowed = checkSuppliedKeys(x, MList, testingKeys, k)
 if isAllowed == True:
-    print('Welcome!, you may launch the Missile to destroy anything you want :)\n')
+    print('Welcome!, you may launch the Missile to destroy anything you want 😈\n')
 else:
     print(isAllowed[1], "\n")
 

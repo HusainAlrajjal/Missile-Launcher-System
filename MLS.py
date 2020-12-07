@@ -192,11 +192,11 @@ def CRT_Setup(n_equations, min_digits):
 def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
 
     if len(MList) < k:
-        return False, 'The missile needs at least ' + str(k) + ' keys to launch it but only ' + str(len(MList)) + ' were generated'
+        return False, 'The missile needs at least ' + str(k) + ' keys to launch it but only ' + str(len(MList)) + ' were generated 😂😂'
 
     keysSet = set(anonymous_keys)
     if len(keysSet) < k:
-        return False, 'No sufficient keys were provided!!'
+        return False, 'No sufficient keys were provided!!😢'
 
     true_test = 0
     for key in keysSet:
@@ -204,5 +204,5 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
             true_test += 1
     
     if true_test < k:
-        return False, 'You are not allowed to launch the Missile, Please Stop Hacking Our System!'
+        return False, 'You are not allowed to launch the Missile, Please Stop Hacking Our System!😉'
     return 0 < k <= true_test
