@@ -185,9 +185,29 @@ def CRT_Setup(n_equations, min_digits):
         Mi = int(all_M_multiplied // coPrime)
         x += a * Mi * int(inverseModuleN(Mi, coPrime))
         keyList.append((a, coPrime))
-    return [x, co_primes, keyList]
+    
+    hashedKeys = createHashedKeys(keyList)
+    return [x % all_M_multiplied, co_primes, keyList]
 
     # ---------------------myTestingArea-----------------------------
+
+
+def createHashedKeys(keys):
+    return -1
+
+def getXmodM_crt(keys):
+    
+    
+
+    for key in keys:
+            Mi = int(all_M_multiplied // key[0])
+            x += a * Mi * int(inverseModuleN(Mi, coPrime))
+            keyList.append((a, coPrime))
+
+    return -1
+
+
+
 
 def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
     if k <= 2:
