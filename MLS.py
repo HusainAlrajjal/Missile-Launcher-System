@@ -126,10 +126,10 @@ def getRandomCoPrimePair(n):  # n is the maximum of the random number
             return r
 
 
-def getCoPrimes(n, depthOfRandomness):
+def getCoPrimes(n_equations, depthOfRandomness):
     Random_co_primes = []
     Generated_co_primes = set()
-    while len(Generated_co_primes) < n:
+    while len(Generated_co_primes) < n_equations:
     
         # ------------------------- generating co_primes block ---------------------
         g = generateCoPrime(getRandomCoPrimePair(
@@ -148,7 +148,7 @@ def getCoPrimes(n, depthOfRandomness):
         for e in toBeRemoved:
             Generated_co_primes.remove(e)
 
-    if len(Generated_co_primes) == (n + 1):
+    if len(Generated_co_primes) == (n_equations + 1):
         Generated_co_primes.pop()
     return Generated_co_primes
 
