@@ -116,6 +116,10 @@ def generateCoPrime(list):
 
 
 def getRandomCoPrimePair(n):  # n is the maximum of the random number
+    '''
+    This function returns a pair of random co-prime numbers between 2 and n
+    '''
+
     if n == 2:  # Fixes unresponding problem
         n += 1
     r = []
@@ -132,8 +136,8 @@ def getCoPrimes(n_equations, depthOfRandomness):
     while len(Generated_co_primes) < n_equations:
     
         # ------------------------- generating co_primes block ---------------------
-        g = generateCoPrime(getRandomCoPrimePair(
-            random.randint(2, depthOfRandomness)))[random.randint(0, 2)]
+        someRandom = random.randint(2, depthOfRandomness)
+        g = generateCoPrime(getRandomCoPrimePair(someRandom))[random.randint(0, 2)]
         Generated_co_primes.add(g[0])
         Generated_co_primes.add(g[1])
         # ----------------------------------block end ------------------------------
