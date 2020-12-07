@@ -1,4 +1,6 @@
-import random, time
+import random
+import time
+
 
 def gcd(a, b):
     if b == 0:
@@ -7,6 +9,7 @@ def gcd(a, b):
         return gcd(b, pow(a, 1, b))
     else:
         return gcd(b, a)
+
 
 def EEA(a, b):
     # Base source https://www.geeksforgeeks.org/python-program-for-basic-and-extended-euclidean-algorithms-2/
@@ -76,7 +79,7 @@ def bruteForce(pwList):
     return attackKeys
 
 
-# masqurading 
+# masqurading
 def Hbrute_force(N):
     pairs = list()
     N = 10 ** N
@@ -134,10 +137,11 @@ def getCoPrimes(n_equations, depthOfRandomness):
     Random_co_primes = []
     Generated_co_primes = set()
     while len(Generated_co_primes) < n_equations:
-    
+
         # ------------------------- generating co_primes block ---------------------
         someRandom = random.randint(2, depthOfRandomness)
-        g = generateCoPrime(getRandomCoPrimePair(someRandom))[random.randint(0, 2)]
+        g = generateCoPrime(getRandomCoPrimePair(someRandom))[
+            random.randint(0, 2)]
         Generated_co_primes.add(g[0])
         Generated_co_primes.add(g[1])
         # ----------------------------------block end ------------------------------
@@ -185,8 +189,10 @@ def CRT_Setup(n_equations, min_digits):
         Mi = int(all_M_multiplied // coPrime)
         x += a * Mi * int(inverseModuleN(Mi, coPrime))
         keyList.append((a, coPrime))
-    
-    hashedKeys = createHashedKeys(keyList)
+
+    #hashedKeys = createHashedKeys(keyList)
+    #keyList = [(2, 3), (3, 5), (2, 7)]
+    print(getXmodM_crt(keyList))
     return [x % all_M_multiplied, co_primes, keyList]
 
     # ---------------------myTestingArea-----------------------------
@@ -195,17 +201,18 @@ def CRT_Setup(n_equations, min_digits):
 def createHashedKeys(keys):
     return -1
 
+
 def getXmodM_crt(keys):
-    
-    
-
+    tempXmodM = []
+    all_M_multiplied = 1
+    x = 0
+    for k in keys:
+        all_M_multiplied *= k[1]  # multiplying all M to get BigM
     for key in keys:
-            Mi = int(all_M_multiplied // key[0])
-            x += a * Mi * int(inverseModuleN(Mi, coPrime))
-            keyList.append((a, coPrime))
+        Mi = int(all_M_multiplied // key[1])
+        x += key[0] * Mi * int(inverseModuleN(Mi, key[1]))
 
-    return -1
-
+    return x % all_M_multiplied
 
 
 
@@ -224,7 +231,7 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
         for key in keysSet:
             if test(key, x, MList):
                 true_test += 1
-        
+
         if true_test < k:
             return False, 'You are not allowed to launch the Missile, Please Stop Hacking Our System!😉'
         return k <= true_test
