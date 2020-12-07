@@ -190,8 +190,8 @@ def CRT_Setup(n_equations, min_digits):
         x += a * Mi * int(inverseModuleN(Mi, coPrime))
         keyList.append((a, coPrime))
 
-    #hashedKeys = createHashedKeys(keyList)
-    #keyList = [(2, 3), (3, 5), (2, 7)]
+    # hashedKeys = createHashedKeys(keyList)
+    # keyList = [(2, 3), (3, 5), (2, 7)]
     print(getXmodM_crt(keyList))
     return [x % all_M_multiplied, co_primes, keyList]
 
@@ -216,8 +216,24 @@ def getXmodM_crt(keys):
         Mi = int(all_M_multiplied // key[1])
         x += key[0] * Mi * int(inverseModuleN(Mi, key[1]))
 
-    return (x % all_M_multiplied, all_M_multiplied)
+    return x % all_M_multiplied, all_M_multiplied
 
+
+def nCr(pair_list, r, n):
+    pair_list = set(pair_list)
+    comb = list()
+    for i in range(r, n + 1):
+        comb += combinations(pair_list, i)
+    return list(comb)
+
+
+def new_CRT(n_equations, min_digits, threshold_k):
+    coCrimesDepth = 10 ** min_digits
+    co_primes = getCoPrimes(n_equations, coCrimesDepth)
+    key_list = set()
+    for coPrime in co_primes:
+        keys_list.append((get_a(coPrime), coPrime))
+    # keys generated
 
 
 def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
@@ -225,7 +241,8 @@ def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
         return False
     else:
         if len(MList) < k:
-            return False, 'The missile needs at least ' + str(k) + ' keys to launch it but only ' + str(len(MList)) + ' were generated 😂😂'
+            return False, 'The missile needs at least ' + str(k) + ' keys to launch it but only ' + str(
+                len(MList)) + ' were generated 😂😂'
 
         keysSet = set(anonymous_keys)
         if len(keysSet) < k:
