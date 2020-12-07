@@ -178,7 +178,7 @@ def get_a(m):
 def CRT_Setup(n_equations, min_digits):
     coPrimesDepth = 10 ** min_digits
     co_primes = getCoPrimes(n_equations, coPrimesDepth)
-    new_CRT(n_equations, min_digits, 5)
+
     # ---------------------myTestingArea-----------------------------
 
     all_M_multiplied = getM(co_primes)
@@ -192,7 +192,7 @@ def CRT_Setup(n_equations, min_digits):
 
     # hashedKeys = createHashedKeys(keyList)
     # keyList = [(2, 3), (3, 5), (2, 7)]
-    #print(getXmodM_crt(keyList))
+    print(getXmodM_crt(keyList))
     return [x % all_M_multiplied, co_primes, keyList]
 
     # ---------------------myTestingArea-----------------------------
@@ -228,26 +228,17 @@ def nCr(pair_list, r, n):
 
 
 def new_CRT(n_equations, min_digits, threshold_k):
-    print("new CRT")
     # 1- Generate N
-    N = getRandom(min_digits)
+    N = getRandom(10 ** min_digits)
     # 2- Generate m list
-    coPrimesDepth = int(len(str(N)) // (n_equations - random.uniform(0.1,0.6)))
+    coPrimesDepth = len(str(N)) // (n_equations - 1)
     co_primes = getCoPrimes(n_equations, coPrimesDepth)
     key_list = set()
-    all_M_multiplied = 1
     # 3- Key_list
     for coPrime in co_primes:
-        key_list.add(((N % coPrime), coPrime))
-        all_M_multiplied *= coPrime
-
+        keys_list.append(((N % coPrime), coPrime))
     # 4- Key Testing CRT(keylist)
-    texted = getXmodM_crt(key_list)
-    print(co_primes)
-    print(len(str(N)))
-    print(coPrimesDepth * n_equations)
-    print(len(str(all_M_multiplied)))
-    print("NewCRT")
+    texted = getXmodM_crt(keys_list)
 
 
 
