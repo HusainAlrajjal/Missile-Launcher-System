@@ -229,11 +229,18 @@ def nCr(pair_list, r, n):
 
 def new_CRT(n_equations, min_digits, threshold_k):
     coCrimesDepth = 10 ** min_digits
-    co_primes = getCoPrimes(n_equations, coCrimesDepth)
+    # 1- Generate N
+
+    # 2- Generate m list
+    coPrimesDepth = len(str(N)) // (n_equations - 1)
+    co_primes = getCoPrimes(n_equations, coPrimesDepth)
     key_list = set()
+    # 3- Key_list
     for coPrime in co_primes:
-        keys_list.append((get_a(coPrime), coPrime))
-    # keys generated
+        keys_list.append(((N % coPrime), coPrime))
+    # 4- Key Testing CRT(keylist)
+    texted = getXmodM_crt(keys_list)
+
 
 
 def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
