@@ -203,6 +203,9 @@ def createHashedKeys(keys):
 
 
 def getXmodM_crt(keys):
+    '''
+    syntax keyList = [(2, 3), (3, 5), (2, 7)]
+    '''
     tempXmodM = []
     all_M_multiplied = 1
     x = 0
