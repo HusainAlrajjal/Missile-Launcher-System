@@ -176,8 +176,8 @@ def get_a(m):
 
 
 def CRT_Setup(n_equations, min_digits):
-    coCrimesDepth = 10 ** min_digits
-    co_primes = getCoPrimes(n_equations, coCrimesDepth)
+    coPrimesDepth = 10 ** min_digits
+    co_primes = getCoPrimes(n_equations, coPrimesDepth)
 
     # ---------------------myTestingArea-----------------------------
 
@@ -228,9 +228,8 @@ def nCr(pair_list, r, n):
 
 
 def new_CRT(n_equations, min_digits, threshold_k):
-    coCrimesDepth = 10 ** min_digits
     # 1- Generate N
-
+    N = getRandom(10 ** min_digits)
     # 2- Generate m list
     coPrimesDepth = len(str(N)) // (n_equations - 1)
     co_primes = getCoPrimes(n_equations, coPrimesDepth)
