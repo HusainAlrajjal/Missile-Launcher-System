@@ -243,19 +243,19 @@ def new_CRT(n_equations, min_digits, threshold_k):
     # 1- Generate N
     N = getRandom(min_digits)
     # 2- Generate m list
-    coPrimesDepth = len(str(N)) // (n_equations-1)
-    PairPrime = getXXXXX(coPrimesDepth, min_digits)
-    coPPs = generateCoPrime(PairPrime)[0]
-    for e in coPPs:
-        c = getCoPrime(e)
-        print(c)
-    print(coPPs)
-    print('-------------------------')
-    for p in PairPrime:
-        print(len(str(p)))
-    print('-------------------------')
+    #coPrimesDepth = len(str(N)) // (n_equations - 4)
+    # PairPrime = getXXXXX(coPrimesDepth, min_digits)
+    # coPPs = generateCoPrime(PairPrime)[0]
+    # for e in coPPs:
+    #     c = getCoPrime(e)
+    #     print(c)
+    # print(coPPs)
+    # print('-------------------------')
+    # for p in PairPrime:
+    #     print(len(str(p)))
+    # print('-------------------------')
 
-    co_primes = getCoPrimes(n_equations, coPrimesDepth * 1000)
+    co_primes = getCoPrimes(n_equations, 10 ** (min_digits - int(min_digits * 0.75)))
     key_list = set()
     # 3- Key_list
     all_M_multiplied = 1
