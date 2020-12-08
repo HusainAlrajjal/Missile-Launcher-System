@@ -30,6 +30,7 @@ def inverseModuleN(a, m):
         else:
             return inverseModN[1]
     else:
+        print('No Modular inverse: ', a, ' mod ', m)
         '''
         'No multiplicative inverse for ', str(a), 'mod', str(m))
         '''
@@ -217,11 +218,10 @@ def getXmodM_crt(keys):
     #print(keys, '////////////////////////')
     for k in keys:
         all_M_multiplied *= k[1]  # multiplying all M to get BigM
-    print('all_M: ', all_M_multiplied)
     for key in keys:
         Mi = int(all_M_multiplied // key[1])
         x += key[0] * Mi * int(inverseModuleN(Mi, key[1]))
-    print('x is: ' ,x % all_M_multiplied)
+
     #print(x % all_M_multiplied, all_M_multiplied, '---------------')
     return x % all_M_multiplied, all_M_multiplied
 
@@ -257,12 +257,9 @@ def new_CRT(N, n_equations, min_digits, threshold_k):
         #print('coprimeList', allCoPrimes(n_equations, randomPair))
         key_list = set()
         # 3- Key_list
-        print('coprimes: ', co_primes)
         for coPrime in co_primes:
-            pairKey = ((N % coPrime), coPrime)
-            if gcd(pairKey[0], pairKey[1]) == 1:
-                key_list.add(((N % coPrime), coPrime))
-                all_M_multiplied *= coPrime
+            key_list.add(((N % coPrime), coPrime))
+            all_M_multiplied *= coPrime
         # 4- Key Testing CRT(keylist)
         
         #print("new CRT")
