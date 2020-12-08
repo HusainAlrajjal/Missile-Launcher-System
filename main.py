@@ -46,12 +46,12 @@ while True:
         testingKeys.append((int(userInput[0]), int(userInput[1])))
 
     XmodM = getXmodM_crt(set(testingKeys))
-    print('realKeys: ', keys)
-    print('testingkyes: ', testingKeys)
+    print('test2: ', XmodM )
 
     x = XmodM[0]
     M = XmodM[1]
 
+    print(x, N)
     if x == N and len(testingKeys) <= k:
         print('Welcome!, you may launch the Missile to destroy anything you want 😈\n')
     else:
