@@ -1,7 +1,6 @@
 import random
 import time
 
-
 def gcd(a, b):
     if b == 0:
         return a
@@ -133,9 +132,9 @@ def getRandomCoPrimePair(n):  # n is the maximum of the random number
             return r
 
 
-def getXXXXX(min_digits, max_digits):  # n is the maximum of the random number
+def randomCoPrimePair(min_digits, max_digits):  # n is the maximum of the random number
     '''
-    This function returns a pair of random co-prime numbers between 2 and n
+    This function returns a pair of random co-prime numbers between min_digits and max_digits
     '''
     r = []
     while True:
@@ -208,12 +207,6 @@ def CRT_Setup(n_equations, min_digits):
     return [x % all_M_multiplied, co_primes, keyList]
 
     # ---------------------myTestingArea-----------------------------
-
-
-def createHashedKeys(keys):
-    return -1
-
-
 def getXmodM_crt(keys):
     '''
     syntax keyList = [(2, 3), (3, 5), (2, 7)]
@@ -221,14 +214,14 @@ def getXmodM_crt(keys):
     tempXmodM = []
     all_M_multiplied = 1
     x = 0
-    print(keys, '////////////////////////')
+    #print(keys, '////////////////////////')
     for k in keys:
         all_M_multiplied *= k[1]  # multiplying all M to get BigM
     for key in keys:
         Mi = int(all_M_multiplied // key[1])
         x += key[0] * Mi * int(inverseModuleN(Mi, key[1]))
 
-    print(x % all_M_multiplied, all_M_multiplied, '---------------')
+    #print(x % all_M_multiplied, all_M_multiplied, '---------------')
     return x % all_M_multiplied, all_M_multiplied
 
 
@@ -239,36 +232,40 @@ def nCr(pair_list, r, n):
         comb += combinations(pair_list, i)
     return list(comb)
 
-
+def allCoPrimes(lengthOfCoPrimeList, start_randomPair):
+    coprimes = set()
+    pair = generateCoPrime(start_randomPair)[random.randint(0, 2)]
+    coprimes.add(pair[0])
+    coprimes.add(pair[1])
+    
+    while len(coprimes) < lengthOfCoPrimeList:
+        tempPair = generateCoPrime(pair)[random.randint(0, 2)]
+        coprimes.add(tempPair[0])
+        coprimes.add(tempPair[1])
+    return coprimes
+ 
 def new_CRT(N, n_equations, min_digits, threshold_k):
     # 1- Generate N
     # 2- Generate m list
-    coPrimesDepth = len(str(N)) // (n_equations - 4)
-    # PairPrime = getXXXXX(coPrimesDepth, min_digits)
-    # coPPs = generateCoPrime(PairPrime)[0]
-    # for e in coPPs:
-    #     c = getCoPrime(e)
-    #     print(c)
-    # print(coPPs)
-    # print('-------------------------')
-    # for p in PairPrime:
-    #     print(len(str(p)))
-    # print('-------------------------')
-
-    co_primes = getCoPrimes(n_equations, 10 ** (min_digits - int(min_digits * 0.20)))
-    key_list = set()
-    # 3- Key_list
     all_M_multiplied = 1
-    for coPrime in co_primes:
-        key_list.add(((N % coPrime), coPrime))
-        all_M_multiplied *= coPrime
-    # 4- Key Testing CRT(keylist)
-    #tested = getXmodM_crt(key_list)
-    print("new CRT")
+
+    while len(str(N)) > len(str(all_M_multiplied)):
+        coPrimesDepth = len(str(N)) // (n_equations - 1)
+        randomPair = randomCoPrimePair(coPrimesDepth, coPrimesDepth + 1 )
+        co_primes = allCoPrimes(n_equations, randomPair)
+        #print('coprimeList', allCoPrimes(n_equations, randomPair))
+        key_list = set()
+        # 3- Key_list
+        for coPrime in co_primes:
+            key_list.add(((N % coPrime), coPrime))
+            all_M_multiplied *= coPrime
+        # 4- Key Testing CRT(keylist)
+        #tested = getXmodM_crt(key_list)
+        #print("new CRT")
     print(co_primes)
     print(N, len(str(N)))
     print(all_M_multiplied, len(str(all_M_multiplied)))
-    print("NewCRT")
+    #print("NewCRT")
     return key_list
 
 
