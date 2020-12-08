@@ -17,6 +17,8 @@ n = int(input('Enter the number of generals (n): '))  # number of keys to be gen
 
 print("\n------------------------Staff Only------------------------")
 x, MList, keys = CRT_Setup(n, min_digits)
+new_CRT(n, min_digits, k)
+
 print("TOP secret (N)\t\t:", x)
 print("TOP secret length (N)\t\t:", len(str(x)) ," digits")
 # print("TOP secret mods (m_list)\t:", MList)

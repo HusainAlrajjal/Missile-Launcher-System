@@ -133,6 +133,19 @@ def getRandomCoPrimePair(n):  # n is the maximum of the random number
             return r
 
 
+def getXXXXX(min_digits, max_digits):  # n is the maximum of the random number
+    '''
+    This function returns a pair of random co-prime numbers between 2 and n
+    '''
+    r = []
+    while True:
+        r = [random.randint(10 ** (min_digits - 1), 10 ** (max_digits -1 )), random.randint(10 ** (min_digits - 1), 10 ** (max_digits - 1))]
+        # print(r)
+        if gcd(r[0], r[1]) == 1:
+            return r
+
+
+
 def getCoPrimes(n_equations, depthOfRandomness):
     Random_co_primes = []
     Generated_co_primes = set()
@@ -178,7 +191,6 @@ def get_a(m):
 def CRT_Setup(n_equations, min_digits):
     coPrimesDepth = 10 ** min_digits
     co_primes = getCoPrimes(n_equations, coPrimesDepth)
-
     # ---------------------myTestingArea-----------------------------
 
     all_M_multiplied = getM(co_primes)
@@ -192,7 +204,7 @@ def CRT_Setup(n_equations, min_digits):
 
     # hashedKeys = createHashedKeys(keyList)
     # keyList = [(2, 3), (3, 5), (2, 7)]
-    print(getXmodM_crt(keyList))
+    # print(getXmodM_crt(keyList))
     return [x % all_M_multiplied, co_primes, keyList]
 
     # ---------------------myTestingArea-----------------------------
@@ -229,17 +241,34 @@ def nCr(pair_list, r, n):
 
 def new_CRT(n_equations, min_digits, threshold_k):
     # 1- Generate N
-    N = getRandom(10 ** min_digits)
+    N = getRandom(min_digits)
     # 2- Generate m list
-    coPrimesDepth = len(str(N)) // (n_equations - 1)
-    co_primes = getCoPrimes(n_equations, coPrimesDepth)
+    coPrimesDepth = len(str(N)) // (n_equations-1)
+    PairPrime = getXXXXX(coPrimesDepth, min_digits)
+    coPPs = generateCoPrime(PairPrime)[0]
+    for e in coPPs:
+        c = getCoPrime(e)
+        print(c)
+    print(coPPs)
+    print('-------------------------')
+    for p in PairPrime:
+        print(len(str(p)))
+    print('-------------------------')
+
+    co_primes = getCoPrimes(n_equations, coPrimesDepth * 1000)
     key_list = set()
     # 3- Key_list
+    all_M_multiplied = 1
     for coPrime in co_primes:
-        keys_list.append(((N % coPrime), coPrime))
+        key_list.add(((N % coPrime), coPrime))
+        all_M_multiplied *= coPrime
     # 4- Key Testing CRT(keylist)
-    texted = getXmodM_crt(keys_list)
-
+    texted = getXmodM_crt(key_list)
+    print("new CRT")
+    print(co_primes)
+    print(N, len(str(N)))
+    print(all_M_multiplied, len(str(all_M_multiplied)))
+    print("NewCRT")
 
 
 def checkSuppliedKeys(x, MList, anonymous_keys, k):  # k = threshold
