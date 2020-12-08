@@ -248,9 +248,9 @@ def new_CRT(N, n_equations, min_digits, threshold_k):
     # 1- Generate N
     # 2- Generate m list
     all_M_multiplied = 1
+    coPrimesDepth = len(str(N)) // (n_equations - 1)
 
     while len(str(N)) > len(str(all_M_multiplied)):
-        coPrimesDepth = len(str(N)) // (n_equations - 1)
         randomPair = randomCoPrimePair(coPrimesDepth, coPrimesDepth + 1 )
         co_primes = allCoPrimes(n_equations, randomPair)
         #print('coprimeList', allCoPrimes(n_equations, randomPair))

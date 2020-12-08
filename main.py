@@ -45,7 +45,10 @@ while True:
             break
         testingKeys.append((int(userInput[0]), int(userInput[1])))
 
-    XmodM = getXmodM_crt(testingKeys)
+    XmodM = getXmodM_crt(set(testingKeys))
+    print('realKeys: ', keys)
+    print('testingkyes: ', testingKeys)
+
     x = XmodM[0]
     M = XmodM[1]
 
