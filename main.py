@@ -4,14 +4,13 @@ import sys, math
 sys.setrecursionlimit(4500)
 
 
-def generatePairWiseCoPrimes(n, nDigits):
+def generatePairWiseCoPrimes(n, Min, Max):
     temp = set()
     count_coPrimes = 0
-    temp.add(random.randint(7*10 ** (nDigits - 1), (
-            10 ** nDigits) - 1))  # adding some random number to be the first element in the pairwise set
+    temp.add(random.randint(Min, Max))  # adding some random number to be the first element in the pairwise set
 
     while len(temp) < n:
-        r = random.randint(7*10 ** (nDigits - 1), (10 ** nDigits) - 1)
+        r = random.randint(Min, Max)
         for e in temp:
             #  print(e, r, gcd(e, r))
             if gcd(e, r) == 1:
@@ -57,15 +56,15 @@ def main():
     # N = getRandom(nDigits_ofN)  # random
     N = int(input("N>>"))
 
-    nKeysDigits = math.ceil(len(str(N)) / k)
-    print(nKeysDigits)
+    Min = 2
+    print(Min)
     mList = list()
     M = 1
     keys = []
-    while N >= M or ((1 or 0) in keys):
+    while N >= M or (0 in keys):
         keys = []
         M = 1
-        mList = list(generatePairWiseCoPrimes(n, nKeysDigits))
+        mList = list(generatePairWiseCoPrimes(n, math.ceil(pow(N, 1 / k)), math.ceil(pow(N, 1 / (n - k)))))
         for m in mList:
             M *= m
         keys = [N % m for m in mList]
@@ -110,6 +109,7 @@ def main():
             print('Welcome!, you may launch the Missile to destroy anything you want 😈\n')
         else:
             print('You are not allowed to launch the Missile, Please Stop Hacking Our System!😉')
+
 
 if __name__ == '__main__':
     main()
