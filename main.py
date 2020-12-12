@@ -7,11 +7,11 @@ sys.setrecursionlimit(4500)
 def generatePairWiseCoPrimes(n, nDigits):
     temp = set()
     count_coPrimes = 0
-    temp.add(random.randint(10 ** (nDigits - 1), (
+    temp.add(random.randint(7*10 ** (nDigits - 1), (
             10 ** nDigits) - 1))  # adding some random number to be the first element in the pairwise set
 
     while len(temp) < n:
-        r = random.randint(10 ** (nDigits - 1), (10 ** nDigits) - 1)
+        r = random.randint(7*10 ** (nDigits - 1), (10 ** nDigits) - 1)
         for e in temp:
             #  print(e, r, gcd(e, r))
             if gcd(e, r) == 1:
