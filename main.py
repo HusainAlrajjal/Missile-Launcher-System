@@ -53,6 +53,7 @@ n = int(input('Enter the number of generals (n): '))  # number of keys to be gen
 print("\n------------------------Staff Only------------------------")
 #x, MList, keys = CRT_Setup(n, min_digits)
 nKeysDigits = nDigits_ofN // 2
+nKeysDigits = nDigits_ofN // k
 N = getRandom(nDigits_ofN)  # random
 mList = list(generatePairWiseCoPrimes(n, nKeysDigits))
 keys = [N % m for m in mList]
