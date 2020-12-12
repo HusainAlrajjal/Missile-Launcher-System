@@ -110,3 +110,6 @@ def main():
             print('Welcome!, you may launch the Missile to destroy anything you want 😈\n')
         else:
             print('You are not allowed to launch the Missile, Please Stop Hacking Our System!😉')
+
+if __name__ == '__main__':
+    main()
