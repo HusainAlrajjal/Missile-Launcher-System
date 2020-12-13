@@ -61,10 +61,16 @@ def main():
     mList = list()
     M = 1
     keys = []
+    minimum, maximum = math.ceil(pow(N, 1 / k)), math.ceil(pow(N, 1 / (k - 1)))
+    range_possible = maximum - minimum + 1
+    if range_possible < n:
+        print('It is not feasible!!')
+        return
+
     while N >= M or (0 in keys):
         keys = []
         M = 1
-        mList = list(generatePairWiseCoPrimes(n, math.ceil(pow(N, 1 / k)), math.ceil(pow(N, 1 / (k-1)))))
+        mList = list(generatePairWiseCoPrimes(n, minimum, maximum))
         for m in mList:
             M *= m
         keys = [N % m for m in mList]
