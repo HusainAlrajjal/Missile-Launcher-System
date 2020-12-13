@@ -64,7 +64,7 @@ def main():
     while N >= M or (0 in keys):
         keys = []
         M = 1
-        mList = list(generatePairWiseCoPrimes(n, math.ceil(pow(N, 1 / k)), math.ceil(pow(N, k/ n))))
+        mList = list(generatePairWiseCoPrimes(n, math.ceil(pow(N, 1 / k)), math.ceil(pow(N, 1 / (k-1)))))
         for m in mList:
             M *= m
         keys = [N % m for m in mList]
