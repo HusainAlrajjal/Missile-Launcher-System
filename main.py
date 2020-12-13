@@ -56,14 +56,14 @@ def main():
     # N = getRandom(nDigits_ofN)  # random
     N = int(input("N>>"))
 
-    Min = 2
-    print(Min)
     mList = list()
     M = 1
     keys = []
     minimum, maximum = math.ceil(pow(N, 1 / k)), math.ceil(pow(N, 1 / (k - 1)))
     range_possible = maximum - minimum + 1
-    if range_possible < n:
+    val_list = list(range(minimum, maximum + 1))
+    n_cop = restircted_max_coprime(n, val_list)
+    if range_possible < n or n_cop < n:
         print('It is not feasible!!')
         return
 
