@@ -59,7 +59,7 @@ def main():
     mList = list()
     M = 1
     keys = []
-    minimum, maximum = math.ceil(pow(N, 1 / k)), math.ceil(pow(N, 1 / (k - 1)))
+    minimum, maximum = math.ceil(pow(N, 1 / k)), math.floor(pow(N, 1 / (k - 1)))
     range_possible = maximum - minimum + 1
     val_list = list(range(minimum, maximum + 1))
     n_cop = restircted_max_coprime(n, val_list)
