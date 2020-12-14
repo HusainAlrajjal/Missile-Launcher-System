@@ -1,5 +1,5 @@
 from MLS import *
-import sys, math
+import sys, math,random
 
 sys.setrecursionlimit(4500)
 
@@ -31,29 +31,13 @@ def save_keys(keys):
     pwList.close()
 
 
-# print('coprimeList', generateCoPrime(randomPair)[random.randint(0, 2)])
-
-
-# print(keys, mList)
-
-
-# print('N: ', N)
-# print(testingKeys)
-# print('This is it  ', getXmodM_crt(testingKeys))
-# save_keys(testingKeys)
-
-
 def main():
     print("\n------------------------Setup The System------------------------\n")
-    # nDigits_ofN = int(input('How many digits is N?  '))
     k = int(input('What is the threshold (k)? '))  # threshold
     n = int(input('Enter the number of generals (n): '))  # number of keys to be generated
     print("\n------------------------Staff Only------------------------")
-    # x, MList, keys = CRT_Setup(n, min_digits)
-    # nKeysDigits = nDigits_ofN // 2
-    # nKeysDigits = nDigits_ofN // k
 
-    # N = getRandom(nDigits_ofN)  # random
+
     N = int(input("N>>"))
 
     mList = list()
