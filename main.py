@@ -1,7 +1,7 @@
 from MLS import *
-import sys, math,random
+import sys, math, random
 
-sys.setrecursionlimit(4500)
+sys.setrecursionlimit(5000)
 
 
 def generatePairWiseCoPrimes(n, Min, Max):
@@ -37,7 +37,6 @@ def main():
     n = int(input('Enter the number of generals (n): '))  # number of keys to be generated
     print("\n------------------------Staff Only------------------------")
 
-
     N = int(input("N>>"))
 
     mList = list()
@@ -45,11 +44,12 @@ def main():
     keys = []
     minimum, maximum = math.ceil(pow(N, 1 / k)), math.floor(pow(N, 1 / (k - 1)))
     range_possible = maximum - minimum + 1
-    val_list = list(range(minimum, maximum + 1))
-    n_cop = restircted_max_coprime(n, val_list)
-    if range_possible < n or n_cop < n:
-        print('It is not feasible!!')
-        return
+    if (k ** 2) > range_possible:
+        val_list = list(range(minimum, maximum + 1))
+        n_cop = restircted_max_coprime(n, val_list)
+        if range_possible < n or n_cop < n:
+            print('It is not feasible!!')
+            return
 
     while N >= M or (0 in keys):
         keys = []
