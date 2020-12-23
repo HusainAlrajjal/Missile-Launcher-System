@@ -3,6 +3,24 @@ import sys, math, random
 
 sys.setrecursionlimit(5000)
 
+def nth_root(x, n):
+    # Start with some reasonable bounds around the nth root.
+    upper_bound = 1
+    while upper_bound ** n <= x:
+        upper_bound *= 2
+    lower_bound = upper_bound // 2
+    # Keep searching for a better result as long as the bounds make sense.
+    while lower_bound < upper_bound:
+        mid = (lower_bound + upper_bound) // 2
+        mid_nth = mid ** n
+        if lower_bound < mid and mid_nth < x:
+            lower_bound = mid
+        elif upper_bound > mid and mid_nth > x:
+            upper_bound = mid
+        else:
+            # Found perfect nth root.
+            return mid
+    return mid + 1
 
 def generatePairWiseCoPrimes(n, Min, Max):
     temp = set()
@@ -35,6 +53,9 @@ def main():
     print("\n------------------------Setup The System------------------------\n")
     k = int(input('What is the threshold (k)? '))  # threshold
     n = int(input('Enter the number of generals (n): '))  # number of keys to be generated
+    if n < k:
+        print('INPUT ERROR: k cannot be greater than n')
+        main() 
     print("\n------------------------Staff Only------------------------")
 
     N = int(input("N>>"))
@@ -42,7 +63,9 @@ def main():
     mList = list()
     M = 1
     keys = []
-    minimum, maximum = math.ceil(pow(N, 1 / k)), math.floor(pow(N, 1 / (k - 1)))
+    minimum, maximum = math.ceil(nth_root(N, k)), math.floor(nth_root(N, k-1))
+
+    print('minimum: ', minimum, ' maximum: ', maximum)
     range_possible = maximum - minimum + 1
     if (k ** 2) > range_possible:
         val_list = list(range(minimum, maximum + 1))
