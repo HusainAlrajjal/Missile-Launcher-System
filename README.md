@@ -26,7 +26,7 @@ modulo 𝒎 to this solution.[1]
 ## Application of CRT
 This section will explain how CRT will utilized to solve the consensus problem
 in two sections: key generation, and key testing.
-### - A. Key Generation
+###  A. Key Generation
 This part of the project will use the values 𝒏, 𝒌, and 𝑵 to generate the keys.
 First, the system will check whether it is possible to get 𝒏 distinct coprime numbers
 (𝑚1, … , 𝑚𝑛) knowing that the range of the coprime values that will be used are
@@ -51,7 +51,7 @@ The system is demonstrated in Figure1 .
 
 ![image](https://user-images.githubusercontent.com/47674591/126030944-ef67f3a2-580b-4ed0-b33c-ba7d5ef9332b.png)
 
-### - B. Key Testing
+###  B. Key Testing
 
 This part simply will use CRT to calculate 𝑵 using the supplied keys as
 shown in Figure 2
