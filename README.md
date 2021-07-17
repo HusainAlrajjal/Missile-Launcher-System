@@ -64,12 +64,14 @@ Navigate to the project folder then run the main.py file
 
 ## Interaction with the system
 1. you will be asked to provide simple information about the problem as a setup such as K and n where K is the minimum number of general consensus required to launch the missile and n is the number of all generals in the system
-2. The keys will be stored in a txt file called keys.txt, this file include they keys for all the n generals and each row in the file represents a single key
+2. The keys will be stored in a txt file called keys.txt, this file include they keys for all the n generals and each row in the file represents a single key.
+
   **NOTE: Each single key is actually a pair of two numbers represented as single row in the keys.txt file**
+  
 3. To test a key you need to paste the two numbers first, then press ENTER to enter the next key, note that the key length doesn't matter and you may test wrong keys also, if you finished entering all the keys enter e then click on ENTER to check whether the keys are correct or not
 
 ![image](https://user-images.githubusercontent.com/47674591/126032104-37bc5aeb-9569-4b6a-a05c-7715054831cf.png)
 
 ## Sample run
- **NOTE: We are not allowed to launch the missile here because we provided only 2 valid keys and we should've provided 3 instead since k = 3 **
+ **NOTE: We are not allowed to launch the missile here because we provided only 2 valid keys and we should've provided 3 instead since k = 3**
 ![image](https://user-images.githubusercontent.com/47674591/126032123-bd827e03-1f96-489a-88ea-7079536439eb.png)
