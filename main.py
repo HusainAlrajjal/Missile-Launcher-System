@@ -58,7 +58,8 @@ def main():
         main() 
     print("\n------------------------Staff Only------------------------")
 
-    N = int(input("N>>"))
+    #N = int(input("N>>"))
+    N = random.randint(10 ** 5, 10 ** 99) # random Top Secret N
 
     mList = list()
     M = 1
