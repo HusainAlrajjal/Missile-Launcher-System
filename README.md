@@ -16,7 +16,7 @@ Let 𝒎𝟏, 𝒎𝟐, . . . , 𝒎𝒏 be pairwise relatively prime positive i
 one and 𝒂𝟏, 𝒂𝟐, . . . , 𝒂𝒏 arbitrary integers.
 𝑵 ≡ 𝒂𝟏 (𝒎𝒐𝒅 𝒎𝟏),
 𝑵 ≡ 𝒂𝟐 (𝒎𝒐𝒅 𝒎𝟐),
-… 
+… ,
 𝑵 ≡ 𝒂𝒏 (𝒎𝒐𝒅 𝒎𝒏)
  
 Then the system has a unique solution modulo 𝒎 = 𝒎𝟏 • 𝒎𝟐 • … • 𝒎𝒏
@@ -41,10 +41,10 @@ the system will refuse to generate keys and terminated.
 Second, 𝒏 coprime numbers will be generated and sent to the third step. Third,
 the system will calculate:
 
-𝑵 𝒎𝒐𝒅 𝒎𝟏 = 𝒂𝟏
-𝑵 𝒎𝒐𝒅 𝒎𝟐 = 𝒂𝟐
-…
-𝑵 𝒎𝒐𝒅 𝒎𝒏 = 𝒂𝒏
+𝑵 𝒎𝒐𝒅 𝒎𝟏 = 𝒂𝟏, 
+𝑵 𝒎𝒐𝒅 𝒎𝟐 = 𝒂𝟐, 
+… ,
+𝑵 𝒎𝒐𝒅 𝒎𝒏 = 𝒂𝒏, 
 
 Then, it will return the values (𝑎1, 𝑚1), … , (𝑎𝑛, 𝑚𝑛) which is the list of the keys.
 The system is demonstrated in Figure1 .
